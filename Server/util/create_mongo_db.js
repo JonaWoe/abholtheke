@@ -2,6 +2,8 @@ const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://admin:admin@abholtheke-inim5.gcp.mongodb.net/test?retryWrites=true&w=majority";
 const dbName = "WebApp";
 
+
+// Example MongoDB connection, can be used to create initial DB entrys
 MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
     if (err) throw err;
 
