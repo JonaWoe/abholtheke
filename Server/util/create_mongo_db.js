@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://admin:admin@abholtheke-inim5.gcp.mongodb.net/test?retryWrites=true&w=majority";
-const dbName = "Abholtheke";
+const dbName = "WebApp";
 
 MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
     if (err) throw err;
