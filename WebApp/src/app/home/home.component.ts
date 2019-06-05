@@ -2,18 +2,18 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { User } from '../_models';
-import { UserService, AuthenticationService } from '../_services';
+import { Prescription, User } from '../_models';
+import { PrescriptionService, AuthenticationService } from '../_services';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit, OnDestroy {
   currentUser: User;
   currentUserSubscription: Subscription;
-  users: User[] = [];
+  prescriptions: Prescription[] = [];
 
   constructor(
     private authenticationService: AuthenticationService,
-    private userService: UserService
+    private prescriptionService: PrescriptionService
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //this.loadAllUsers();
+    this.loadAllPrescriptions();
   }
 
   ngOnDestroy() {
@@ -29,15 +29,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.currentUserSubscription.unsubscribe();
   }
 
-  deleteUser(id: number) {
-    this.userService.delete(id).pipe(first()).subscribe(() => {
-      this.loadAllUsers()
-    });
+  deleteUser(id) {
+    /*this.userService.delete(id).pipe(first()).subscribe(() => {
+      this.loadAllPrescriptions();
+    });*/
   }
 
-  private loadAllUsers() {
-    this.userService.getAll().pipe(first()).subscribe(users => {
-      this.users = users;
+  private loadAllPrescriptions() {
+    this.prescriptionService.getPrescriptionsByInsuranceId(this.currentUser.insuranceId).pipe(first()).subscribe(prescriptions => {
+      this.prescriptions = prescriptions;
+      console.log(this.prescriptions);
     });
   }
 }

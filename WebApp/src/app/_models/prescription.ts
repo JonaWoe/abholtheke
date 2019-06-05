@@ -6,5 +6,6 @@ export class Prescription {
   amount: string;
   medicineId: string;
   insuranceId: string;
+  redeemed: boolean;
   description: string;
 }
