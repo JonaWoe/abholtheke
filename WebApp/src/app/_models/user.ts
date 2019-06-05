@@ -1,5 +1,5 @@
 export class User {
-  id: number;
+  id: string;
   insuranceId: string;
   eMail: string;
   password: string;
