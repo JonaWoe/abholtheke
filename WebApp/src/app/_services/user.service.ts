@@ -24,7 +24,7 @@ export class UserService {
   }
 
   register(user: User) {
-    return this.http.post(this.endpointUrl + `/users/register`, user, this.httpOptions);
+    return this.http.post(this.endpointUrl + `/users`, user, this.httpOptions);
   }
 
   update(user: User) {
