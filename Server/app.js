@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const userRoutes = require('./users/users.routes');
+const authenticationRoutes = require('./authentication/authentication.routes');
 
 //MongoDB Endpoint
 const url = "mongodb+srv://admin:admin@abholtheke-inim5.gcp.mongodb.net/test?retryWrites=true&w=majority";
@@ -30,8 +31,9 @@ app.use(function(req, res, next) {
     next();
 });
 
-// redirect all API calls on /useres to users.route
+// redirect all API calls to individual routes
 app.use('/users', userRoutes);
+app.use('/authenticate', authenticationRoutes);
 
 
 

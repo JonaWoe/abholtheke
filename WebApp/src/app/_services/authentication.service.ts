@@ -10,6 +10,8 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
+  endpointUrl = 'http://localhost:3000';
+
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -19,8 +21,8 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(`/users/authenticate`, { username, password })
+  login(insuranceId: string, password: string) {
+    return this.http.post<any>(this.endpointUrl + '/authenticate', { insuranceId, password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
