@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '../_services';
@@ -12,12 +13,17 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
 
+  private user: SocialUser;
+  private loggedIn: boolean;
+
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private authService: AuthService
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -29,6 +35,12 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       insuranceId: ['', Validators.required],
       password: ['', Validators.required]
+    });
+
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      console.log(this.user);
     });
 
     // get return url from route parameters or default to '/'
@@ -57,5 +69,13 @@ export class LoginComponent implements OnInit {
           this.alertService.error(error);
           this.loading = false;
         });
+  }
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.authService.signOut();
   }
 }

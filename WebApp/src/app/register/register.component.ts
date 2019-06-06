@@ -58,4 +58,5 @@ export class RegisterComponent implements OnInit {
           this.loading = false;
         });
   }
+
 }
