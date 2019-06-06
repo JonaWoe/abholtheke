@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://admin:admin@abholtheke-inim5.gcp.mongodb.net/test?retryWrites=true&w=majority";
+//const url = "mongodb://localhost:27017";
 const dbName = "Abholtheke";
 
 

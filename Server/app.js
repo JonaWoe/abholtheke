@@ -5,18 +5,14 @@ const userRoutes = require('./users/users.routes');
 const authenticationRoutes = require('./authentication/authentication.routes');
 const prescriptionRoutes = require('./prescriptions/prescriptions.routes');
 
-//MongoDB Endpoint
-const url = "mongodb+srv://admin:admin@abholtheke-inim5.gcp.mongodb.net/test?retryWrites=true&w=majority";
-// const url ="localhost:27017";
-const dbName = "Abholtheke";
-
+const config = require('./config/config.js');
 
 // Connection to MongoDB and server initialisation and
-MongoClient.connect(url, { useNewUrlParser: true },(err, client) => {
+MongoClient.connect(global.gConfig.database, { useNewUrlParser: true },(err, client) => {
     if (err) return console.log(err);
-    console.log("MongoDB on " + url + " connected!");
-    app.locals.dbo = client.db(dbName);
-    app.listen(3000, () => {
+    console.log("MongoDB on " + global.gConfig.database + " connected!");
+    app.locals.dbo = client.db(global.gConfig.dbName);
+    app.listen(global.gConfig.port, () => {
         console.log('Example app listening on port 3000!');
     });
 });

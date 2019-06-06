@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   private loadAllPrescriptions() {
     this.prescriptionService.getPrescriptionsByInsuranceId(this.currentUser.insuranceId).pipe(first()).subscribe(prescriptions => {
       this.prescriptions = prescriptions;
-      console.log(this.prescriptions);
     });
   }
 }
