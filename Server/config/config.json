@@ -9,6 +9,6 @@
   },
   "local": {
     "config_id:": "local",
-    "database": "mongodb://localhost:27017",
+    "database": "mongodb://localhost:27017"
   }
 }
