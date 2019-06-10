@@ -15,6 +15,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register/';
+import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
 
 
 const googleLoginOptions: LoginOpt = {
@@ -44,7 +45,8 @@ export function provideConfig() {
     AlertComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PrescriptionsComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
