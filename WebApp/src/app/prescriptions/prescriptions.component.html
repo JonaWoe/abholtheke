@@ -1,5 +1,20 @@
-<ul>
-  <li *ngFor="let prescription of prescriptions | keyvalue">
-    {{prescription.value.medicine}}, {{prescription.value.amount}}, {{prescription.value.expireDate}},  {{prescription.value.issuedBy}}
-  </li>
-</ul>
+<div class="list-item">
+    <h2>Meine Rezepte</h2>
+  <section class=item-info-wrapper *ngFor="let prescription of prescriptions | keyvalue">
+   
+   <div class="container">
+    <div class=item-img></div>
+    <div class=item-info>
+      <p class=info> {{prescription.value.medicine}}, {{prescription.value.amount}} </p>
+      <p class=info> {{prescription.value.issuedBy}}</p>
+      <p class=info>Gültig bis: {{prescription.value.expireDate}}</p>
+      <div class=item-status>
+          <p class=info>Status:</p>
+          <button>Bestellen</button>
+              </div>
+     </div>
+  
+  </div>
+
+  </section>
+</div>
