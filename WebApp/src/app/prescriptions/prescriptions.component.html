@@ -1,3 +1,5 @@
-<p>
-  prescriptions works!
-</p>
+<ul>
+  <li *ngFor="let prescription of prescriptions | keyvalue">
+    {{prescription.value.medicine}}, {{prescription.value.amount}}, {{prescription.value.expireDate}},  {{prescription.value.issuedBy}}
+  </li>
+</ul>
