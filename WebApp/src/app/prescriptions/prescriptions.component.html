@@ -1,7 +1,7 @@
 <div class="list-item">
-    <h2>Meine Rezepte</h2>
+  TEST: <app-pharmacy-modal></app-pharmacy-modal>
+  <h2>Meine Rezepte</h2>
   <section class=item-info-wrapper *ngFor="let prescription of prescriptions | keyvalue">
-   
    <div class="container">
     <div class=item-img></div>
     <div class=item-info>
@@ -11,10 +11,13 @@
       <div class=item-status>
           <p class=info>Status:</p>
           <button>Bestellen</button>
-              </div>
+        <!--
+        value.redeemed == false && value.pharmacyId == NULl: STATUS = bestellen
+        value.redeemed == false && value.pharmacyId == NOT NULL: STATUS = auf bestätigung warten
+        value.redeemed == true: abgeholt
+        -->
+      </div>
      </div>
-  
   </div>
-
   </section>
 </div>

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, LoginOpt} from 'angularx-social-login';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -16,6 +17,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register/';
 import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
+import { ChoosePharmacyModal} from './prescriptions/choosePharmacy/choosePharmacy.modal';
 
 
 const googleLoginOptions: LoginOpt = {
@@ -38,7 +40,8 @@ export function provideConfig() {
     ReactiveFormsModule,
     HttpClientModule,
     routing,
-    SocialLoginModule
+    SocialLoginModule,
+    NgbModule
   ],
   declarations: [
     AppComponent,
@@ -46,7 +49,8 @@ export function provideConfig() {
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    PrescriptionsComponent
+    PrescriptionsComponent,
+    ChoosePharmacyModal
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
