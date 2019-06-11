@@ -52,9 +52,6 @@ router.post('/google', async (req, res) => {
 
         let existingUser = await userService.getUserByGoogleId(dbo, user.googleId);
 
-        console.log(existingUser);
-        console.log(user);
-
         if (existingUser && existingUser.googleIdToken &&  bcrypt.compareSync(user.googleIdToken, existingUser.googleIdToken) ) {
             let body = {
                 id: existingUser.id,
