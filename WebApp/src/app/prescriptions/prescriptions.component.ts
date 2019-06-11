@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
@@ -10,7 +10,7 @@ import { PrescriptionService, AuthenticationService } from '../_services';
   templateUrl: './prescriptions.component.html',
   styleUrls: ['./prescriptions.component.css']
 })
-export class PrescriptionsComponent implements OnInit {
+export class PrescriptionsComponent implements OnInit, OnDestroy {
   prescriptions: Prescription[] = [];
   currentUser: User;
   currentUserSubscription: Subscription;
@@ -31,12 +31,6 @@ export class PrescriptionsComponent implements OnInit {
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
     this.currentUserSubscription.unsubscribe();
-  }
-
-  deleteUser(id) {
-    /*this.userService.delete(id).pipe(first()).subscribe(() => {
-      this.loadAllPrescriptions();
-    });*/
   }
 
   private loadAllPrescriptions() {

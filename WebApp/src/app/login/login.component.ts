@@ -6,7 +6,7 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '../_services';
 
-@Component({templateUrl: 'login.component.html'})
+@Component({templateUrl: 'login.component.html', styleUrls: ['./login.component.css']})
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   private user: SocialUser;
   private loggedIn: boolean;
+
 
 
   constructor(
@@ -73,9 +74,5 @@ export class LoginComponent implements OnInit {
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  signOut(): void {
-    this.authService.signOut();
   }
 }

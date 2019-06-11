@@ -17,7 +17,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register/';
 import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
-import { ChoosePharmacyModal} from './prescriptions/choosePharmacy/choosePharmacy.modal';
+import { ChoosePharmacyModal} from './prescriptions/choosePharmacy.modal/choosePharmacy.modal';
 
 
 const googleLoginOptions: LoginOpt = {
