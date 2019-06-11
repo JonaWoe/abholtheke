@@ -11,7 +11,7 @@ import { PrescriptionService, AuthenticationService } from '../_services';
   styleUrls: ['./prescriptions.component.css']
 })
 export class PrescriptionsComponent implements OnInit {
-  prescriptions: Prescription[] = [];  
+  prescriptions: Prescription[] = [];
   currentUser: User;
   currentUserSubscription: Subscription;
 
@@ -32,7 +32,7 @@ export class PrescriptionsComponent implements OnInit {
     // unsubscribe to ensure no memory leaks
     this.currentUserSubscription.unsubscribe();
   }
-  
+
   deleteUser(id) {
     /*this.userService.delete(id).pipe(first()).subscribe(() => {
       this.loadAllPrescriptions();

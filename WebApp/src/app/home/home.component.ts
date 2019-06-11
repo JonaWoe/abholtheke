@@ -11,11 +11,10 @@ export class HomeComponent implements OnInit {
   currentUserSubscription: Subscription;
 
   constructor(
-    private authenticationService: AuthenticationService) 
-    {
+    private authenticationService: AuthenticationService) {
       this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
         this.currentUser = user;
-      })
+      });
     }
 
   ngOnInit() {

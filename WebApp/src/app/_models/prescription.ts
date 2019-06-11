@@ -8,4 +8,5 @@ export class Prescription {
   insuranceId: string;
   redeemed: boolean;
   description: string;
+  imgUrl: string;
 }
