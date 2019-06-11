@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
                 firstName:existingUser.firstName,
                 lastName: existingUser.lastName,
                 eMail: existingUser.eMail,
+                role: existingUser.role
             };
 
             const token = jwt.sign(payload);
@@ -53,12 +54,24 @@ router.post('/google', async (req, res) => {
         let existingUser = await userService.getUserByGoogleId(dbo, user.googleId);
 
         if (existingUser && existingUser.googleIdToken &&  bcrypt.compareSync(user.googleIdToken, existingUser.googleIdToken) ) {
+
+            const payload = {
+                insuranceId: existingUser.insuranceId,
+                firstName:existingUser.firstName,
+                lastName: existingUser.lastName,
+                eMail: existingUser.eMail,
+                role: existingUser.role
+            };
+
+            const token = jwt.sign(payload);
+
             let body = {
                 id: existingUser.id,
                 insuranceId: existingUser.insuranceId,
                 firstName: existingUser.firstName,
                 lastName: existingUser.lastName,
                 eMail: existingUser.eMail,
+                token: token
             };
 
             res.status(201).json(body);

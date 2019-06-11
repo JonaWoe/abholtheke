@@ -23,12 +23,8 @@ export class UserService {
     return this.http.get(`/users/` + id);
   }
 
-  register(user: User) {
+  register(user) {
     return this.http.post(this.endpointUrl + `/users`, user, this.httpOptions);
-  }
-
-  registerWithGoogle(user) {
-    return this.http.post(this.endpointUrl + `/users/google`, user, this.httpOptions);
   }
 
   update(user: User) {

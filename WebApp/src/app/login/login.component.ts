@@ -75,11 +75,11 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(_ => {
       this.loading = true;
-      this.authenticationService.loginWithGoogle(this.user.id, this.user.idToken, this.user.authToken)
+      this.authenticationService.loginWithGoogle(this.user.id, this.user.idToken)
         .pipe(first())
         .subscribe(
           data => {
-            this.router.navigate([this.returnUrl]);
+            this.router.navigate([this.returnUrl])
           },
           error => {
             this.alertService.error(error);

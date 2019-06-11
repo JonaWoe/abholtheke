@@ -56,12 +56,12 @@ export class WithGoogleComponent implements OnInit {
         googleIdToken: this.user.idToken
     };
 
-    this.userService.registerWithGoogle(tempUser)
+    this.userService.register(tempUser)
       .pipe(first())
       .subscribe(
         data => {
           this.alertService.success('Registration successful', true);
-          this.authenticationService.loginWithGoogle(this.user.id, this.user.idToken, this.user.authToken)
+          this.authenticationService.loginWithGoogle(this.user.id, this.user.idToken)
             .pipe(first())
             .subscribe(_ => {
               this.router.navigate(['/']);
