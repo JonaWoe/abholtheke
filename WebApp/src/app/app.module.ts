@@ -19,6 +19,7 @@ import { RegisterComponent } from './register/';
 import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
 import { ChoosePharmacyModal} from './prescriptions/choosePharmacy.modal/choosePharmacy.modal';
 import { WithGoogleComponent } from './register/withGoogle/withGoogle.component';
+import { PharmaciesComponent } from './pharmacies/pharmacies.component';
 
 
 const googleLoginOptions: LoginOpt = {
@@ -52,7 +53,8 @@ export function provideConfig() {
     RegisterComponent,
     PrescriptionsComponent,
     ChoosePharmacyModal,
-    WithGoogleComponent
+    WithGoogleComponent,
+    PharmaciesComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
