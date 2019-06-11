@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
-      console.log(this.user);
     });
 
     // get return url from route parameters or default to '/'
@@ -73,6 +72,20 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.submitted = true;
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(_ => {
+      this.loading = true;
+      this.authenticationService.loginWithGoogle(this.user.id, this.user.idToken, this.user.authToken)
+        .pipe(first())
+        .subscribe(
+          data => {
+            this.router.navigate([this.returnUrl]);
+          },
+          error => {
+            this.alertService.error(error);
+            this.loading = false;
+            this.router.navigate([this.returnUrl + '/register/google']);
+          });
+  });
   }
 }

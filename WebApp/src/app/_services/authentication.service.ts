@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from '../_models';
+import { AuthService } from 'angularx-social-login';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -12,7 +13,7 @@ export class AuthenticationService {
 
   endpointUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -35,9 +36,25 @@ export class AuthenticationService {
       }));
   }
 
+  loginWithGoogle(googleId, googleIdToken, googleAuthToken) {
+    return this.http.post<any>(this.endpointUrl + '/authenticate/google', {googleId, googleIdToken})
+      .pipe(map(user => {
+        // login successful if there's a jwt token in the response
+        if (user && googleAuthToken) {
+          user.token = googleAuthToken;
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+        }
+
+        return user;
+      }));
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    this.authService.signOut();
   }
 }

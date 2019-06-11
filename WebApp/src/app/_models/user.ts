@@ -7,3 +7,14 @@ export class User {
   lastName: string;
   token: string;
 }
+
+export class GoogleUser {
+  id: string;
+  insuranceId: string;
+  googleId: string;
+  eMail: string;
+  firstName: string;
+  lastName: string;
+  googleIdToken: string;
+  token: string;
+}

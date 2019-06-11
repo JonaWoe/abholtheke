@@ -5,7 +5,13 @@ module.exports = {
 
     createUser: function(dbo, user) {
 
-        user.password = bcrypt.hashSync(user.password, 10);
+        if (user.password) {
+            user.password = bcrypt.hashSync(user.password, 10);
+        }
+
+        if (user.googleIdToken) {
+            user.googleIdToken = bcrypt.hashSync(user.googleIdToken, 10);
+        }
 
         dbo.collection('user').insertOne(user, function(err, res) {
             if (err) throw err;
@@ -15,5 +21,9 @@ module.exports = {
 
     getUserByInsuranceId: function(dbo, insuranceId) {
         return dbo.collection('user').findOne({insuranceId: insuranceId});
+    },
+
+    getUserByGoogleId: function(dbo, googleId) {
+        return dbo.collection('user').findOne({googleId: googleId});
     }
 };

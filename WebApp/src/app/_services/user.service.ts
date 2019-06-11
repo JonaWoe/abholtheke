@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { User } from '../_models';
+import { GoogleUser, User } from '../_models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -25,6 +25,10 @@ export class UserService {
 
   register(user: User) {
     return this.http.post(this.endpointUrl + `/users`, user, this.httpOptions);
+  }
+
+  registerWithGoogle(user) {
+    return this.http.post(this.endpointUrl + `/users/google`, user, this.httpOptions);
   }
 
   update(user: User) {
