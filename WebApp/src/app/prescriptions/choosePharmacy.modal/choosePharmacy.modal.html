@@ -1,16 +1,26 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <h4 class="modal-title" id="modal-basic-title">Apothekenauswahl</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-      <div class="form-group">
-        <section class=item-info-wrapper *ngFor="let pharmacy of pharmacies">
-         {{pharmacy.pharmacyId}}
-        </section>
-      </div>
+    <div class="form-group">
+      <section class=item-info-wrapper *ngFor="let pharmacy of pharmacies">
+        <div class=container>
+          <div class=item-info>
+            <p class=info>Name: {{pharmacy.name}}</p>
+            <p class=info>Adresse: {{pharmacy.adress}}</p>
+            <p class=info>Öffnungszeiten: {{pharmacy.openingHours}}</p>
+            <p class=info>Telefon: {{pharmacy.telefon}}</p>
+            <p class=info>Gesamtpreis: {{pharmacy.price}}</p>
+            <p class=info>Lagerbestand: {{pharmacy.stock}} 
+                <button class=button-primary>Bezahlen</button> </p>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>

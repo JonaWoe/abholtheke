@@ -9,7 +9,8 @@ import { PharmaciesService, AuthenticationService } from '../../_services';
 
 @Component({
   selector: 'app-pharmacy-modal',
-  templateUrl: './choosePharmacy.modal.html'
+  templateUrl: './choosePharmacy.modal.html',
+  styleUrls: ['./choosePharmacy.modal.css']
 })
 // tslint:disable-next-line:component-class-suffix
 export class ChoosePharmacyModal implements OnInit, OnDestroy {
