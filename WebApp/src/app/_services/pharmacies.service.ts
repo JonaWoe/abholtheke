@@ -15,8 +15,8 @@ export class PharmaciesService {
     })
   };
 
-  getPharmaciesByInsuranceId(insuranceId) {
-    return this.http.get<Pharmacies[]>(this.endpointUrl + '/Pharmacies/' + insuranceId , this.httpOptions);
+  getPharmacies() {
+    return this.http.get<Pharmacies[]>(this.endpointUrl + '/Pharmacies', this.httpOptions);
   }
 
 }

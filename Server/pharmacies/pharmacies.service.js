@@ -1,7 +1,7 @@
 module.exports = {
 
-    getPharmaciesByInsuranceId: function(dbo, insuranceId) {
-       return dbo.collection('pharmacies').find({insuranceId: insuranceId}).toArray();
+    getPharmacies: function(dbo) {
+       return dbo.collection('pharmacies').find().toArray();
     }
 
 };

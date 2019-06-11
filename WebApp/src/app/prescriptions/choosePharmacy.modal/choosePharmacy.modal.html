@@ -7,7 +7,9 @@
   </div>
   <div class="modal-body">
       <div class="form-group">
-       {{pharmacies.value.id}}
+        <section class=item-info-wrapper *ngFor="let pharmacy of pharmacies">
+         {{pharmacy.pharmacyId}}
+        </section>
       </div>
   </div>
   <div class="modal-footer">

@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { Pharmacies, User } from '../../_models';
-import { PharmaciesService, AuthenticationService } from '../../_services'
+import { PharmaciesService, AuthenticationService } from '../../_services';
 
 @Component({
   selector: 'app-pharmacy-modal',
@@ -38,7 +38,7 @@ export class ChoosePharmacyModal implements OnInit, OnDestroy {
   }
 
   private loadAllPharmacies() {
-    this.pharmaciesService.getPharmaciesByInsuranceId(this.currentUser.insuranceId).pipe(first()).subscribe(pharmacies => {
+    this.pharmaciesService.getPharmacies().pipe(first()).subscribe(pharmacies => {
       this.pharmacies = pharmacies;
     });
   }
