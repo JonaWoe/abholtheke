@@ -72,14 +72,12 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
-    this.submitted = true;
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(_ => {
-      this.loading = true;
       this.authenticationService.loginWithGoogle(this.user.id, this.user.idToken)
         .pipe(first())
         .subscribe(
           data => {
-            this.router.navigate([this.returnUrl])
+            this.router.navigate([this.returnUrl]);
           },
           error => {
             this.alertService.error(error);
