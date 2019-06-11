@@ -10,12 +10,12 @@ router.post('/', async (req, res) => {
         let existingUser = await userService.getUserByInsuranceId(dbo, user.insuranceId);
         if (!existingUser) {
             userService.createUser(dbo, user);
-            res.status(201).json({status: "created"});
+            res.status(201).json({status: "Erstellt"});
         } else {
-            res.status(400).json({message: 'Insurance ID "' + user.insuranceId + '" is already taken.'});
+            res.status(400).json({message: 'Versicherungsnummer "' + user.insuranceId + '" bereits vergeben.'});
         }
     } catch(err) {
-        res.status(503).json({message: 'No DB connection!'});
+        res.status(503).json({message: 'Keine DB Verbindung!'});
         console.log(err);
     }
 });

@@ -18,11 +18,11 @@ router.get('/:insuranceId', async function (req, res) {
             const prescriptions = await prescriptionService.getPrescriptionsByInsuranceId(dbo, insuranceId);
             res.status(200).json(prescriptions);
         } catch (err) {
-            res.status(503).json({message: 'No DB connection!'});
+            res.status(503).json({message: 'Keine DB Verbindung!'});
             console.log(err);
         }
     } else {
-        res.status(401).json({message: 'User not authorised'});
+        res.status(401).json({message: 'Nutzer nicht authorisiert'});
     }
 
 });

@@ -33,7 +33,7 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
         { issuedBy: 'Dr. med. Ulrike Stock', expireDate: '10.08.2019', medicine: 'Paracetamol', amount: '1200mg', medicineId: '468171e0-87a5-11e9-bc42-526af7764f64', insuranceId: '3', pharmacyId: '', redeemed: false, description: 'Einnahme nach Bedarf', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'}
 
     ];
-    
+
     const pharmacies = [
         { name:'Zentral Apotheke', adress: 'Kaiserstr. 112 76133 Karlsruhe', openingHours: '08:30-20:00', telefon: '0721 913330', price: '150,40€', stock: 'true', pharmacyId: 1},
         { name:'Hauptpost-Apotheke Karlsruhe', adress: 'Kaiserstr. 156 76133 Karlsruhe', openingHours: '08:30-19:00', telefon: '0721 28603', price: '155,40€', stock: 'false', pharmacyId: 2},

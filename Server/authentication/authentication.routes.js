@@ -37,10 +37,10 @@ router.post('/', async (req, res) => {
 
             res.status(201).json(body);
         } else {
-            res.status(400).json({message: 'Username or password is incorrect!'});
+            res.status(400).json({message: 'Versicherungsnummer oder Passwort falsch!'});
         }
     } catch(err) {
-        res.status(503).json({message: 'No DB connection!'});
+        res.status(503).json({message: 'Keine DB Verbindung!'});
         console.log(err);
     }
 });
@@ -76,10 +76,10 @@ router.post('/google', async (req, res) => {
 
             res.status(201).json(body);
         } else {
-            res.status(400).json({message: 'Registration needed!'});
+            res.status(400).json({message: ' erforderlich!'});
         }
     } catch(err) {
-        res.status(503).json({message: 'No DB connection!'});
+        res.status(503).json({message: 'Keine DB Verbindung!'});
         console.log(err);
     }
 });
