@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cloud": "SET NODE_ENV=cloud&nodemon app.js",
-    "local": "SET NODE_ENV=local&nodemon app.js"
+    "local": "SET NODE_ENV=local&nodemon app.js",
+    "create_db": "node ./util/create_mongo_db.js"
   },
   "author": "",
   "license": "ISC",

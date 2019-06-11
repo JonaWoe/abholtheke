@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AlertService, UserService, AuthenticationService } from '../../_services';
-import {AuthService, SocialUser} from 'angularx-social-login';
+import {AuthService, GoogleLoginProvider, SocialUser} from 'angularx-social-login';
 
 @Component({templateUrl: 'withGoogle.component.html'})
 export class WithGoogleComponent implements OnInit {
@@ -61,7 +61,13 @@ export class WithGoogleComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Registration successful', true);
-          this.router.navigate(['/login']);
+          this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(_ => {
+            this.authenticationService.loginWithGoogle(this.user.id, this.user.idToken, this.user.authToken)
+              .pipe(first())
+              .subscribe(_ => {
+                  this.router.navigate(['/']);
+                });
+          });
         },
         error => {
           this.alertService.error(error);
