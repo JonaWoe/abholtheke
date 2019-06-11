@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Prescription } from '../_models';
+import { Pharmacies } from '../_models';
 
 @Injectable({ providedIn: 'root' })
 export class PharmaciesService {
@@ -16,7 +16,7 @@ export class PharmaciesService {
   };
 
   getPharmaciesByInsuranceId(insuranceId) {
-    return this.http.get<Prescription[]>(this.endpointUrl + '/Pharmacies/' + insuranceId , this.httpOptions);
+    return this.http.get<Pharmacies[]>(this.endpointUrl + '/Pharmacies/' + insuranceId , this.httpOptions);
   }
 
 }

@@ -4,6 +4,8 @@ const MongoClient = require('mongodb').MongoClient;
 const userRoutes = require('./users/users.routes');
 const authenticationRoutes = require('./authentication/authentication.routes');
 const prescriptionRoutes = require('./prescriptions/prescriptions.routes');
+const pharmaciesRoutes = require('./pharmacies/pharmacies.routes');
+
 
 const config = require('./config/config.js');
 
@@ -32,5 +34,6 @@ app.use(function(req, res, next) {
 app.use('/users', userRoutes);
 app.use('/authenticate', authenticationRoutes);
 app.use('/prescription', prescriptionRoutes);
+app.use('/pharmacies', pharmaciesRoutes);
 
 

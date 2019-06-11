@@ -36,10 +36,10 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
 
     // TODO
     const pharmacies = [
-        { pharmacyId: 1},
-        { pharmacyId: 2},
-        { pharmacyId: 4},
-        { pharmacyId: 5},
+        { insuranceId: '1', pharmacyId: 1},
+        { insuranceId: '1', pharmacyId: 2},
+        { insuranceId: '1', pharmacyId: 4},
+        { insuranceId: '1', pharmacyId: 5},
     ];
 
     dbo.collection('user').insertMany(user, function(err, res) {
