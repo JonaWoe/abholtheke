@@ -36,10 +36,10 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
 
     // TODO
     const pharmacies = [
-        { pharmacyId: 1},
-        { pharmacyId: 2},
-        { pharmacyId: 4},
-        { pharmacyId: 5},
+        { name:'Zentral Apotheke', adress: 'Kaiserstr. 112 76133 Karlsruhe', openingHours: '08:30-20:00', telefon: '0721 913330', price: '150,40€', stock: 'true', pharmacyId: 1},
+        { name:'Hauptpost-Apotheke Karlsruhe', adress: 'Kaiserstr. 156 76133 Karlsruhe', openingHours: '08:30-19:00', telefon: '0721 28603', price: '155,40€', stock: 'false', pharmacyId: 2},
+        { name:'Hof-Apotheke', adress: 'Kaiserstr. 201 76133 Karlsruhe', openingHours: '08:30-19:00', telefon: '0721 24591', price: '160,70€', stock: 'false', pharmacyId: 4},
+        { name:'Congress Apotheke', adress: 'Ettlinger Str. 5 76137 Karlsruhe', openingHours: '08:30-18:00', telefon: '0721 356360', price: '139,15', stock:'true', pharmacyId: 5},
     ];
 
     dbo.collection('user').insertMany(user, function(err, res) {
