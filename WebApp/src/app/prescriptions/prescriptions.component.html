@@ -3,7 +3,7 @@
   <h2>Meine Rezepte</h2>
   <section class=item-info-wrapper *ngFor="let prescription of prescriptions | keyvalue">
    <div class="container">
-    <div class=item-img></div>
+    <div class=item-img><img class=item-img [src]="prescription.value.imgUrl"/></div>
     <div class=item-info>
       <p class=info> {{prescription.value.medicine}}, {{prescription.value.amount}} </p>
       <p class=info> {{prescription.value.issuedBy}}</p>

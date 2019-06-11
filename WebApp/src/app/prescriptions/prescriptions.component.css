@@ -31,8 +31,7 @@ div, section, h2, p{
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: url("https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg");
-}
+ }
 
 .item-info{
     display:flex;
