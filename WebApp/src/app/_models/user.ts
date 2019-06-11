@@ -6,6 +6,7 @@ export class User {
   firstName: string;
   lastName: string;
   token: string;
+  role: number;
 }
 
 export class GoogleUser {
@@ -17,4 +18,5 @@ export class GoogleUser {
   lastName: string;
   googleIdToken: string;
   token: string;
+  role: number;
 }

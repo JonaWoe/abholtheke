@@ -13,6 +13,8 @@ module.exports = {
             user.googleIdToken = bcrypt.hashSync(user.googleIdToken, 10);
         }
 
+        user.role = 1;
+
         dbo.collection('user').insertOne(user, function(err, res) {
             if (err) throw err;
             console.log("Number of documents inserted: " + res.insertedCount);

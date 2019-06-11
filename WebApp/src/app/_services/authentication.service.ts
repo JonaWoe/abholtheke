@@ -36,12 +36,12 @@ export class AuthenticationService {
       }));
   }
 
-  loginWithGoogle(googleId, googleIdToken, googleAuthToken) {
+  loginWithGoogle(googleId, googleIdToken) {
     return this.http.post<any>(this.endpointUrl + '/authenticate/google', {googleId, googleIdToken})
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
-        if (user && googleAuthToken) {
-          user.token = googleAuthToken;
+        if (user && user.token) {
+
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
@@ -55,6 +55,6 @@ export class AuthenticationService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    this.authService.signOut();
+    this.authService.signOut().catch( error => {});
   }
 }
