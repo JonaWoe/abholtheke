@@ -27,5 +27,9 @@ module.exports = {
 
     getUserByGoogleId: function(dbo, googleId) {
         return dbo.collection('user').findOne({googleId: googleId});
+    },
+
+    getUsers: function(dbo) {
+        return dbo.collection('user').find().toArray();
     }
 };
