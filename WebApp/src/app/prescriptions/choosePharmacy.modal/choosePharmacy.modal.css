@@ -51,4 +51,17 @@ div, section, h2, p{
     margin-left: 2.6rem;
 }
 
-
+.button-modal{
+    width:auto;
+    font-size: 0.875rem;
+    font-weight:bold;
+    background-color: rgb(6, 100, 6);
+    color:white;
+    display:flex;
+    flex-direction:row;
+    text-decoration: none;
+    padding:0.5rem;
+    margin-left:1rem;
+    border-radius: 2px;
+    border:0;
+}
