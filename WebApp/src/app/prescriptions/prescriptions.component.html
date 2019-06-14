@@ -9,7 +9,9 @@
       <p class=info>Gültig bis: {{prescription.value.expireDate}}</p>
       <div class=item-status>
           <p class=info>Status:</p>
-          <app-pharmacy-modal></app-pharmacy-modal>
+          <p *ngIf="prescription.value.redeemed == false && !prescription.value.pharmacyId "><app-pharmacy-modal></app-pharmacy-modal></p>
+          <p *ngIf="prescription.value.redeemed == false && prescription.value.pharmacyId">Auf Bestätigung warten</p>
+          <p *ngIf="prescription.value.redeemed == true">abgeholt</p>
         <!--
         value.redeemed == false && value.pharmacyId == NULl: STATUS = bestellen
         value.redeemed == false && value.pharmacyId == NOT NULL: STATUS = auf bestätigung warten
