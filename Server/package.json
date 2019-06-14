@@ -14,10 +14,12 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "ics": "^2.13.2",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.11",
     "mongodb": "^3.2.6",
     "node-gyp": "^4.0.0",
+    "uuid": "^3.3.2",
     "webdav-server": "^2.4.6"
   },
   "devDependencies": {

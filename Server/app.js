@@ -12,6 +12,9 @@ const webdav = require('webdav-server').v2;
 const userService = require('./users/users.service');
 const prescriptionService = require('./prescriptions/prescriptions.service');
 const webdavOwn = require('./WebDav');
+//CalDav
+const ics = require('ics');
+const uuidv4 = require('uuid/v4');
 
 // Config
 const config = require('./config/config.js');
@@ -84,7 +87,9 @@ async function startWebDav(dbo) {
         for (const user of users) {
             let name = user.firstName + '_' + user.lastName + '.json';
             fileStructure[user.insuranceId] = {
-                'prescriptions': {},
+                'prescriptions': {
+                    'calender': {},
+                },
             };
             fileStructure[user.insuranceId][name] = JSON.stringify(user);
 
@@ -92,7 +97,34 @@ async function startWebDav(dbo) {
             const prescriptions = await prescriptionService.getPrescriptionsByInsuranceId(dbo, user.insuranceId);
             for (const prescription of prescriptions) {
                 fileStructure[user.insuranceId]['prescriptions'][prescription._id + '.json'] = JSON.stringify(prescription);
+
+                // generate iCall events
+                let now = new Date();
+                let events = [];
+                for (const t of prescription.time) {
+                    for (let i = 0; i<prescription.duration; i++) {
+                        const event = {
+                            start: [now.getFullYear(), now.getMonth() + 1, now.getDate()+i, t, 0],
+                            duration: {hours: 0, minutes: 15},
+                            title: 'Medizin einnehmen: ' + prescription.medicine,
+                            description: prescription.description,
+                            productId: 'AbholthekeCalDav'
+                        };
+                        events.push(event);
+                    }
+
+                }
+
+                //generate iCall files and provide in WebDav
+                ics.createEvents(events, (error, value) => {
+                    if (error) {
+                        console.log(error);
+                        return
+                    }
+                    fileStructure[user.insuranceId]['prescriptions']['calender'][prescription.medicine + '.ics'] = value;
+                });
             }
+
 
             // add user to userManager and set rights
             const authUser = userManager.addUser(user.insuranceId, user.password, false);
