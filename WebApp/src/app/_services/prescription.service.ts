@@ -19,4 +19,8 @@ export class PrescriptionService {
     return this.http.get<Prescription[]>(this.endpointUrl + '/prescription/' + insuranceId , this.httpOptions);
   }
 
+  addPharmacy(prescriptionId, pharmacyId) {
+    return this.http.post(this.endpointUrl + '/prescription/', {prescriptionId, pharmacyId}, this.httpOptions);
+  }
+
 }

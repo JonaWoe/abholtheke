@@ -11,12 +11,12 @@
         <div class=container>
           <div class=item-info>
             <p class=info>Name: {{pharmacy.name}}</p>
-            <p class=info>Adresse: {{pharmacy.adress}}</p>
+            <p class=info>Adresse: {{pharmacy.address}}</p>
             <p class=info>Öffnungszeiten: {{pharmacy.openingHours}}</p>
-            <p class=info>Telefon: {{pharmacy.telefon}}</p>
+            <p class=info>Telefon: {{pharmacy.phone}}</p>
             <p class=info>Gesamtpreis: {{pharmacy.price}}</p>
             <p class=info>Lagerbestand: {{pharmacy.stock}} 
-                <button class=button-primary>Auswählen</button></p>
+                <button class=button-primary (click)="choosePharmacy(pharmacy, modal)">Auswählen</button></p>
           </div>
         </div>
       </section>

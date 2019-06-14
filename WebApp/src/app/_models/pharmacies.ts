@@ -1,10 +1,11 @@
 export class Pharmacies {
-    id: string;
-    name: string;
-    adress: string;
-    openingHours: string;
-    telefon: string;
-    price: string;
-    stock: boolean;
-    pharmacyId: string;
+  // tslint:disable-next-line:variable-name
+  _id: string;
+  name: string;
+  address: string;
+  openingHours: string;
+  phone: string;
+  price: string;
+  stock: boolean;
+  pharmacyId: string;
 }

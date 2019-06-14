@@ -8,13 +8,13 @@ router.get('/:insuranceId', async function (req, res) {
     // split and verify token
     const accessToken = req.header('authorization').split(' ')[1];
     const verifiedToken = jwt.verify(accessToken);
+    // get insuranceId out of path parameter
+    const insuranceId = req.params.insuranceId;
 
-
-    // continue if token ist valid and role is 1 (user)
-    if (verifiedToken && verifiedToken.role === 1) {
-        const dbo = req.app.locals.dbo;
-        const insuranceId = req.params.insuranceId;
+    // continue if token ist valid, role is 1 (user) and same insuranceId
+    if (verifiedToken && verifiedToken.role === 1 && verifiedToken.insuranceId === insuranceId ) {
         try {
+            const dbo = req.app.locals.dbo;
             const prescriptions = await prescriptionService.getPrescriptionsByInsuranceId(dbo, insuranceId);
             res.status(200).json(prescriptions);
         } catch (err) {
@@ -25,6 +25,38 @@ router.get('/:insuranceId', async function (req, res) {
         res.status(401).json({message: 'Nutzer nicht authorisiert'});
     }
 
+});
+
+router.post('/', async (req, res) => {
+
+    // split and verify token
+    const accessToken = req.header('authorization').split(' ')[1];
+    const verifiedToken = jwt.verify(accessToken);
+
+    if (verifiedToken && verifiedToken.role === 1) {
+
+        const prescriptionId = req.body.prescriptionId;
+        const pharmacyId = req.body.pharmacyId;
+        const dbo = req.app.locals.dbo;
+
+        // Load prescription
+        const prescription = await prescriptionService.getPrescriptionById(dbo, prescriptionId);
+
+        // Check for same insuranceId and update after
+        if (prescription.insuranceId  === verifiedToken.insuranceId) {
+            try {
+                prescriptionService.updatePrescriptionPharmacyId(dbo, prescriptionId, pharmacyId);
+                res.status(201).json({status: "Updated"});
+            } catch(err) {
+                res.status(503).json({message: 'Keine DB Verbindung!'});
+                console.log(err);
+            }
+        } else {
+            res.status(401).json({message: 'Nutzer nicht authorisiert'});
+        }
+    } else {
+        res.status(401).json({message: 'Nutzer nicht authorisiert'});
+    }
 });
 
 module.exports = router;

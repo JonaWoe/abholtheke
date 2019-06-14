@@ -1,5 +1,6 @@
 export class User {
-  id: string;
+  // tslint:disable-next-line:variable-name
+  _id: string;
   insuranceId: string;
   eMail: string;
   password: string;
@@ -10,7 +11,8 @@ export class User {
 }
 
 export class GoogleUser {
-  id: string;
+  // tslint:disable-next-line:variable-name
+  _id: string;
   insuranceId: string;
   googleId: string;
   eMail: string;

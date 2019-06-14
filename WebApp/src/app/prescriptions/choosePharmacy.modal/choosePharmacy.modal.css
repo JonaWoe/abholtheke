@@ -65,3 +65,7 @@ div, section, h2, p{
     border-radius: 2px;
     border:0;
 }
+
+.modal-title {
+  margin-left: 50px;
+}

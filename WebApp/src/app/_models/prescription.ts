@@ -1,5 +1,6 @@
 export class Prescription {
-  id: string;
+  // tslint:disable-next-line:variable-name
+  _id: string;
   issuedBy: string;
   expireDate: string;
   medicine: string;
@@ -9,4 +10,5 @@ export class Prescription {
   redeemed: boolean;
   description: string;
   imgUrl: string;
+  pharmacyId: string;
 }

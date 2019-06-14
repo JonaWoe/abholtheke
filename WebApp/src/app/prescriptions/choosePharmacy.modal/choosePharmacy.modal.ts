@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
-import { Pharmacies, User } from '../../_models';
-import { PharmaciesService, AuthenticationService } from '../../_services';
+import {Pharmacies, Prescription, User} from '../../_models';
+import { PrescriptionService, PharmaciesService, AuthenticationService, AlertService } from '../../_services';
 
 @Component({
   selector: 'app-pharmacy-modal',
@@ -18,11 +18,14 @@ export class ChoosePharmacyModal implements OnInit, OnDestroy {
   pharmacies: Pharmacies[] = [];
   currentUser: User;
   currentUserSubscription: Subscription;
+  @Input() prescription: Prescription;
 
   constructor(
     private modalService: NgbModal,
     private authenticationService: AuthenticationService,
-    private pharmaciesService: PharmaciesService
+    private pharmaciesService: PharmaciesService,
+    private prescriptionService: PrescriptionService,
+    private alertService: AlertService
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
@@ -62,5 +65,20 @@ export class ChoosePharmacyModal implements OnInit, OnDestroy {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  private choosePharmacy(pharmacy, modal) {
+    this.prescriptionService.addPharmacy(this.prescription._id, pharmacy._id)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.alertService.success('Apotheke erfolgreich ausgewählt!', true);
+          this.prescription.pharmacyId = pharmacy._id;
+          modal.dismiss();
+        },
+        error => {
+          this.alertService.error('Apothekenauswahl fehlgeschlagen!');
+          modal.dismiss();
+        });
   }
 }
