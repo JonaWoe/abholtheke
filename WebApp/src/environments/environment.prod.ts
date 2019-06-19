@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  endpointUrl: 'https://abholtheke-1.appspot.com'
 };

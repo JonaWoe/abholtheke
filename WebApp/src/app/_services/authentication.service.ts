@@ -5,13 +5,12 @@ import { map } from 'rxjs/operators';
 
 import { User } from '../_models';
 import { AuthService } from 'angularx-social-login';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-
-  endpointUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient, private authService: AuthService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -23,7 +22,7 @@ export class AuthenticationService {
   }
 
   login(insuranceId: string, password: string) {
-    return this.http.post<any>(this.endpointUrl + '/authenticate', { insuranceId, password })
+    return this.http.post<any>(environment.endpointUrl + '/authenticate', { insuranceId, password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
@@ -37,7 +36,7 @@ export class AuthenticationService {
   }
 
   loginWithGoogle(googleId, googleIdToken) {
-    return this.http.post<any>(this.endpointUrl + '/authenticate/google', {googleId, googleIdToken})
+    return this.http.post<any>(environment.endpointUrl + '/authenticate/google', {googleId, googleIdToken})
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {

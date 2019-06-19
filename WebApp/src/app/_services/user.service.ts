@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   constructor(private http: HttpClient) { }
-
-  endpointUrl = 'http://localhost:3000';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -14,7 +13,7 @@ export class UserService {
   };
 
   register(user) {
-    return this.http.post(this.endpointUrl + `/users`, user, this.httpOptions);
+    return this.http.post(environment.endpointUrl + `/users`, user, this.httpOptions);
   }
 
 }

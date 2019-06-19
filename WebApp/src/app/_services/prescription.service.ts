@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Prescription } from '../_models';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class PrescriptionService {
   constructor(private http: HttpClient) { }
 
-  endpointUrl = 'http://localhost:3000';
+  endpointUrl = 'https://abholtheke-1.appspot.com';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -16,11 +17,11 @@ export class PrescriptionService {
   };
 
   getPrescriptionsByInsuranceId(insuranceId) {
-    return this.http.get<Prescription[]>(this.endpointUrl + '/prescription/' + insuranceId , this.httpOptions);
+    return this.http.get<Prescription[]>(environment.endpointUrl + '/prescription/' + insuranceId , this.httpOptions);
   }
 
   addPharmacy(prescriptionId, pharmacyId) {
-    return this.http.post(this.endpointUrl + '/prescription/', {prescriptionId, pharmacyId}, this.httpOptions);
+    return this.http.post(environment.endpointUrl + '/prescription/', {prescriptionId, pharmacyId}, this.httpOptions);
   }
 
 }
