@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "cloud": "SET NODE_ENV=cloud&nodemon app.js",
     "local": "SET NODE_ENV=local&nodemon app.js",
@@ -19,7 +20,6 @@
     "lodash": "^4.17.11",
     "mongodb": "^3.2.6",
     "node-gyp": "^4.0.0",
-    "uuid": "^3.3.2",
     "webdav-server": "^2.4.6"
   },
   "devDependencies": {

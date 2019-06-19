@@ -3,7 +3,6 @@
     "config_id:": "cloud",
     "database": "mongodb+srv://admin:admin@abholtheke-inim5.gcp.mongodb.net/test?retryWrites=true&w=majority",
     "dbName": "Abholtheke",
-    "port": 3000,
     "CLIENT_ID": "17332753239-bdecnr349jva127djo5vmvl08gs3ekq3.apps.googleusercontent.com",
     "CLIENT_SECRET": "f8KbgJgRVTZyKeYu_K_Fx7WX"
   },

@@ -14,10 +14,11 @@ const prescriptionService = require('./prescriptions/prescriptions.service');
 const webdavOwn = require('./WebDav');
 //CalDav
 const ics = require('ics');
-const uuidv4 = require('uuid/v4');
 
 // Config
 const config = require('./config/config.js');
+
+const PORT = process.env.PORT || 3000;
 
 
 // Connection to MongoDB and server initialisation
@@ -25,8 +26,8 @@ MongoClient.connect(global.gConfig.database, { useNewUrlParser: true }, (err, cl
     if (err) return console.log(err);
     console.log("MongoDB on " + global.gConfig.database + " connected!");
     app.locals.dbo = client.db(global.gConfig.dbName);
-    app.listen(global.gConfig.port, () => {
-        console.log('Example app listening on port 3000!');
+    app.listen(PORT, () => {
+        console.log('Example app listening on port' + PORT);
     });
 
     startWebDav(app.locals.dbo);
