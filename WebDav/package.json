@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cloud": "SET NODE_ENV=cloud&nodemon app.js",
+    "local": "SET NODE_ENV=local&nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ics": "^2.13.2",
+    "lodash": "^4.17.11",
+    "mongodb": "^3.2.6",
+    "node-gyp": "^4.0.0",
+    "webdav-server": "^2.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

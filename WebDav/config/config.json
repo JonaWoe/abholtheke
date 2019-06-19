@@ -1,0 +1,11 @@
+{
+  "cloud": {
+    "config_id:": "cloud",
+    "database": "mongodb+srv://admin:admin@abholtheke-inim5.gcp.mongodb.net/test?retryWrites=true&w=majority",
+    "dbName": "Abholtheke"
+  },
+  "local": {
+    "config_id:": "local",
+    "database": "mongodb://localhost:27017"
+  }
+}
