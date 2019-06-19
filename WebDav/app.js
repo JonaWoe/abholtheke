@@ -64,13 +64,13 @@ async function startWebDav(dbo) {
             fileStructure[user.insuranceId][name] = JSON.stringify(user);
 
             // add prescriptions from the user to the file structure
+            let events = [];
             const prescriptions = await service.getPrescriptionsByInsuranceId(dbo, user.insuranceId);
             for (const prescription of prescriptions) {
                 fileStructure[user.insuranceId]['prescriptions'][prescription._id + '.json'] = JSON.stringify(prescription);
 
                 // generate iCall events
                 let now = new Date();
-                let events = [];
                 for (const t of prescription.time) {
                     for (let i = 0; i<prescription.duration; i++) {
                         const event = {
@@ -84,16 +84,18 @@ async function startWebDav(dbo) {
                     }
 
                 }
-
-                //generate iCall files and provide in WebDav
-                ics.createEvents(events, (error, value) => {
-                    if (error) {
-                        console.log(error);
-                        return
-                    }
-                    fileStructure[user.insuranceId]['prescriptions']['calender'][prescription.medicine + '.ics'] = value;
-                });
             }
+
+            //generate iCall files and provide in WebDav
+            ics.createEvents(events, (error, value) => {
+                if (error) {
+                    console.log(error);
+                    return
+                }
+                if (value) {
+                    fileStructure[user.insuranceId]['prescriptions']['calender']['medicine.ics'] = value;
+                }
+            });
 
 
             // add user to userManager and set rights
