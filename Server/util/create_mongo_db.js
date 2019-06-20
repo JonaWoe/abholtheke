@@ -1,3 +1,4 @@
+const cryptoService = require('./../authentication/crypto.service');
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://admin:admin@abholtheke-inim5.gcp.mongodb.net/test?retryWrites=true&w=majority";
 //const url = "mongodb://localhost:27017";
@@ -34,6 +35,26 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
 
     ];
 
+    let encryptedPrescriptions = [];
+
+    for (let prescription of prescriptions) {
+        const encryptedPrescription = {
+            issuedBy: cryptoService.encrypt(prescription.issuedBy),
+            expireDate: cryptoService.encrypt(prescription.expireDate),
+            medicine: cryptoService.encrypt(prescription.medicine),
+            amount: cryptoService.encrypt(prescription.amount),
+            medicineId: cryptoService.encrypt(prescription.medicineId),
+            insuranceId: prescription.insuranceId,
+            pharmacyId: prescription.pharmacyId,
+            redeemed: cryptoService.encrypt(JSON.stringify(prescription.redeemed)),
+            time: cryptoService.encrypt(JSON.stringify(prescription.time)),
+            duration: cryptoService.encrypt(prescription.duration),
+            description: cryptoService.encrypt(prescription.description),
+            imgUrl: cryptoService.encrypt(prescription.imgUrl)
+        };
+        encryptedPrescriptions.push(encryptedPrescription);
+    }
+
     const pharmacies = [
         { name:'Zentral Apotheke', adress: 'Kaiserstr. 112 76133 Karlsruhe', openingHours: '08:30-20:00', telefon: '0721 913330', price: '150,40€', stock: 'true'},
         { name:'Hauptpost-Apotheke Karlsruhe', adress: 'Kaiserstr. 156 76133 Karlsruhe', openingHours: '08:30-19:00', telefon: '0721 28603', price: '155,40€', stock: 'false'},
@@ -46,7 +67,7 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
         console.log('Number of documents inserted: ' + res.insertedCount);
     });
 
-    dbo.collection('prescriptions').insertMany(prescriptions, function(err, res) {
+    dbo.collection('prescriptions').insertMany(encryptedPrescriptions, function(err, res) {
         if (err) throw err;
         console.log('Number of documents inserted: ' + res.insertedCount);
     });

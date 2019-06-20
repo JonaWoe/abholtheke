@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const prescriptionService = require('./prescriptions.service');
 const jwt = require('./../authentication/jwt.service');
+const cryptoService = require('./../authentication/crypto.service');
 
 router.get('/:insuranceId', async function (req, res) {
 
@@ -16,7 +17,28 @@ router.get('/:insuranceId', async function (req, res) {
         try {
             const dbo = req.app.locals.dbo;
             const prescriptions = await prescriptionService.getPrescriptionsByInsuranceId(dbo, insuranceId);
-            res.status(200).json(prescriptions);
+
+            let decryptedPrescriptions = [];
+
+            for (let prescription of prescriptions) {
+                const decryptedPrescription = {
+                    _id: prescription._id,
+                    insuranceId: prescription.insuranceId,
+                    pharmacyId: prescription.pharmacyId,
+                    issuedBy: cryptoService.decrypt(prescription.issuedBy),
+                    expireDate: cryptoService.decrypt(prescription.expireDate),
+                    medicine: cryptoService.decrypt(prescription.medicine),
+                    amount: cryptoService.decrypt(prescription.amount),
+                    medicineId: cryptoService.decrypt(prescription.medicineId),
+                    redeemed: JSON.parse(cryptoService.decrypt(prescription.redeemed)),
+                    time: JSON.parse(cryptoService.decrypt(prescription.time)),
+                    duration: cryptoService.decrypt(prescription.duration),
+                    description: cryptoService.decrypt(prescription.description),
+                    imgUrl: cryptoService.decrypt(prescription.imgUrl)
+                };
+                decryptedPrescriptions.push(decryptedPrescription);
+            }
+            res.status(200).json(decryptedPrescriptions);
         } catch (err) {
             res.status(503).json({message: 'Keine DB Verbindung!'});
             console.log(err);
