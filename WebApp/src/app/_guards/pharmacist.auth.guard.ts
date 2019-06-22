@@ -18,7 +18,7 @@ export class PharmacistAuthGuard implements CanActivate {
     }
 
     // not logged in so redirect to login page with the return url
-    this.router.navigate(['/pharmacy/login'], { queryParams: { returnUrl: state.url }});
+    this.router.navigate(['/pharmacist/login'], { queryParams: { returnUrl: state.url }});
     return false;
   }
 }

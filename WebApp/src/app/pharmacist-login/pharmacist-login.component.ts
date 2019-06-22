@@ -27,7 +27,7 @@ export class PharmacistLoginComponent implements OnInit {
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/pharmacy']);
+      this.router.navigate(['/pharmacist']);
     }
   }
 
@@ -37,7 +37,7 @@ export class PharmacistLoginComponent implements OnInit {
       password: ['', Validators.required]
     });
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/pharmacy';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/pharmacist';
   }
 
   // convenience getter for easy access to form fields

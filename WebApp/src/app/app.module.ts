@@ -5,22 +5,20 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, LoginOpt} from 'angularx-social-login';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
-
-
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 
 import { AlertComponent } from './_components';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './home';
+import { PatientHomeComponent } from './patient-home';
 import { PatientLoginComponent } from './patient-login';
-import { RegisterComponent } from './register/';
-import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
-import { ChoosePharmacyModal} from './prescriptions/choosePharmacy.modal/choosePharmacy.modal';
-import { WithGoogleComponent } from './register/withGoogle/withGoogle.component';
+import { PatientRegisterComponent } from './patient-register/';
+import { PatientPrescriptionsComponent } from './patient-prescriptions';
+import { ChoosePharmacyModal} from './patient-prescriptions/choosePharmacy.modal/choosePharmacy.modal';
+import { WithGoogleComponent } from './patient-register/withGoogle';
 import { PharmacistLoginComponent } from './pharmacist-login';
-import { PharmacyComponent } from './pharmacy/pharmacy.component';
+import { PharmacistHomeComponent } from './pharmacist-home';
+import { PharmacistPrescriptionComponent } from './pharmacist-prescription';
 
 
 const googleLoginOptions: LoginOpt = {
@@ -49,14 +47,15 @@ export function provideConfig() {
   declarations: [
     AppComponent,
     AlertComponent,
-    HomeComponent,
+    PatientHomeComponent,
     PatientLoginComponent,
-    RegisterComponent,
-    PrescriptionsComponent,
+    PatientRegisterComponent,
+    PatientPrescriptionsComponent,
     ChoosePharmacyModal,
     WithGoogleComponent,
     PharmacistLoginComponent,
-    PharmacyComponent
+    PharmacistHomeComponent,
+    PharmacistPrescriptionComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

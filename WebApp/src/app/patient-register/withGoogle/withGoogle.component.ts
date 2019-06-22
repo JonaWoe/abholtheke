@@ -64,7 +64,7 @@ export class WithGoogleComponent implements OnInit {
           this.authenticationService.loginWithGoogle(this.user.id, this.user.idToken)
             .pipe(first())
             .subscribe(_ => {
-              this.router.navigate(['/']);
+              this.router.navigate(['/patient/login']);
             });
         },
         error => {

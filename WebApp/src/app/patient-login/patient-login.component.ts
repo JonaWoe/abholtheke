@@ -28,7 +28,7 @@ export class PatientLoginComponent implements OnInit {
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/patient']);
     }
   }
 
@@ -44,7 +44,7 @@ export class PatientLoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/patient';
   }
 
   // convenience getter for easy access to form fields
@@ -77,7 +77,7 @@ export class PatientLoginComponent implements OnInit {
         .pipe(first())
         .subscribe(
           data => {
-            this.router.navigate([this.returnUrl]);
+            this.router.navigate(['/patient']);
           },
           error => {
             this.alertService.error(error);

@@ -5,8 +5,8 @@ import { Subscription } from 'rxjs';
 import { User } from '../_models';
 import { AuthenticationService } from '../_services';
 
-@Component({ templateUrl: 'home.component.html' })
-export class HomeComponent implements OnInit {
+@Component({ templateUrl: 'patient-home.component.html' })
+export class PatientHomeComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
 

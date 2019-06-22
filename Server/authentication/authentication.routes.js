@@ -73,6 +73,7 @@ router.post('/google', async (req, res) => {
                 firstName: existingUser.firstName,
                 lastName: existingUser.lastName,
                 eMail: existingUser.eMail,
+                role: existingUser.role,
                 token: token
             };
 

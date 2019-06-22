@@ -1,27 +1,30 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home';
+import { PatientHomeComponent } from './patient-home';
 import { PatientLoginComponent } from './patient-login';
-import { RegisterComponent } from './register';
-import { PrescriptionsComponent} from './prescriptions';
+import { PatientRegisterComponent } from './patient-register';
+import { PatientPrescriptionsComponent} from './patient-prescriptions';
 import { PatientAuthGuard } from './_guards';
-import { WithGoogleComponent } from './register/withGoogle';
+import { WithGoogleComponent } from './patient-register/withGoogle';
 import { PharmacistLoginComponent } from './pharmacist-login';
-import { PharmacyComponent } from './pharmacy';
+import { PharmacistHomeComponent } from './pharmacist-home';
 import { PharmacistAuthGuard } from './_guards';
-
+import { PharmacistPrescriptionComponent } from './pharmacist-prescription';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [PatientAuthGuard] },
-  { path: 'login', component: PatientLoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'register/google', component: WithGoogleComponent },
-  { path: 'prescriptions', component: PrescriptionsComponent, canActivate: [PatientAuthGuard]},
-  { path: 'pharmacy/login', component: PharmacistLoginComponent },
-  { path: 'pharmacy', component: PharmacyComponent, canActivate: [PharmacistAuthGuard] },
+  { path: 'patient', component: PatientHomeComponent, canActivate: [PatientAuthGuard] },
+  { path: 'patient/login', component: PatientLoginComponent },
+  { path: 'patient/register', component: PatientRegisterComponent },
+  { path: 'patient/register/google', component: WithGoogleComponent },
+  { path: 'patient/prescriptions', component: PatientPrescriptionsComponent, canActivate: [PatientAuthGuard]},
+  { path: 'pharmacist', component: PharmacistHomeComponent, canActivate: [PharmacistAuthGuard] },
+  { path: 'pharmacist/login', component: PharmacistLoginComponent },
+  { path: 'pharmacist/prescriptions', component: PharmacistPrescriptionComponent },
 
-  // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+
+  // otherwise redirect to patientLogin
+  { path: '**', redirectTo: 'patient/login' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
+

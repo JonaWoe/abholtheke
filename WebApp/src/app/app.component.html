@@ -1,16 +1,16 @@
 <!-- nav -->
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser && currentUser.role == 1">
   <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/">Home</a>
-    <a class="nav-item nav-link" routerLink="/prescriptions">Meine Rezepte</a>
-    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    <a class="nav-item nav-link" routerLink="/patient">Home</a>
+    <a class="nav-item nav-link" routerLink="/patient/prescriptions">Meine Rezepte</a>
+    <a class="nav-item nav-link" (click)="logoutPatient()">Logout</a>
   </div>
 </nav>
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser && currentUser.role == 2">
   <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/pharmacy">Home</a>
-    <a class="nav-item nav-link" routerLink="/pharmacy/prescriptions">Bestellungen</a>
-    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    <a class="nav-item nav-link" routerLink="/pharmacist">Home</a>
+    <a class="nav-item nav-link" routerLink="/pharmacist/prescriptions">Bestellungen</a>
+    <a class="nav-item nav-link" (click)="logoutPharmacist()">Logout</a>
   </div>
 </nav>
 

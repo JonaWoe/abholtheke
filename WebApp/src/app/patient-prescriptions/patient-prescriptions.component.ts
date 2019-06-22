@@ -7,10 +7,10 @@ import { PrescriptionService, AuthenticationService } from '../_services';
 
 @Component({
   selector: 'app-prescriptions',
-  templateUrl: './prescriptions.component.html',
-  styleUrls: ['./prescriptions.component.css']
+  templateUrl: './patient-prescriptions.component.html',
+  styleUrls: ['./patient-prescriptions.component.css']
 })
-export class PrescriptionsComponent implements OnInit, OnDestroy {
+export class PatientPrescriptionsComponent implements OnInit, OnDestroy {
   prescriptions: Prescription[] = [];
   currentUser: User;
   currentUserSubscription: Subscription;
