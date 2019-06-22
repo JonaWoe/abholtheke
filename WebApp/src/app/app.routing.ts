@@ -1,18 +1,24 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home';
-import { LoginComponent } from './login';
-import { RegisterComponent } from './register/register.component';
-import { PrescriptionsComponent} from './prescriptions/prescriptions.component';
-import { AuthGuard } from './_guards';
-import { WithGoogleComponent } from './register/withGoogle/withGoogle.component';
+import { PatientLoginComponent } from './patient-login';
+import { RegisterComponent } from './register';
+import { PrescriptionsComponent} from './prescriptions';
+import { PatientAuthGuard } from './_guards';
+import { WithGoogleComponent } from './register/withGoogle';
+import { PharmacistLoginComponent } from './pharmacist-login';
+import { PharmacyComponent } from './pharmacy';
+import { PharmacistAuthGuard } from './_guards';
+
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
+  { path: '', component: HomeComponent, canActivate: [PatientAuthGuard] },
+  { path: 'login', component: PatientLoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register/google', component: WithGoogleComponent },
-  { path: 'prescriptions', component: PrescriptionsComponent},
+  { path: 'prescriptions', component: PrescriptionsComponent, canActivate: [PatientAuthGuard]},
+  { path: 'pharmacy/login', component: PharmacistLoginComponent },
+  { path: 'pharmacy', component: PharmacyComponent, canActivate: [PharmacistAuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

@@ -1,4 +1,4 @@
-export class Pharmacies {
+export class Pharmacy {
   // tslint:disable-next-line:variable-name
   _id: string;
   name: string;

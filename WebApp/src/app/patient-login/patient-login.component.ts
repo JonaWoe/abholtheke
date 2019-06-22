@@ -6,8 +6,8 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '../_services';
 
-@Component({templateUrl: 'login.component.html', styleUrls: ['./login.component.css']})
-export class LoginComponent implements OnInit {
+@Component({templateUrl: 'patient-login.component.html', styleUrls: ['./patient-login.component.css']})
+export class PatientLoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.insuranceId.value, this.f.password.value)
+    this.authenticationService.loginPatient(this.f.insuranceId.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {

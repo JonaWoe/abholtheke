@@ -10,7 +10,8 @@
       <div class=item-status>
           <p class=info>Status: </p>
           <p *ngIf="!prescription.value.redeemed && !prescription.value.pharmacyId"><app-pharmacy-modal [prescription]="prescription.value"></app-pharmacy-modal></p>
-          <p class=info *ngIf="!prescription.value.redeemed && prescription.value.pharmacyId">Ausstehend</p>
+          <p class=info *ngIf="!prescription.value.redeemed && prescription.value.pharmacyId &&  !prescription.value.ready">Ausstehend</p>
+          <p class=info *ngIf="!prescription.value.redeemed && prescription.value.pharmacyId &&  prescription.value.ready">abholbereit</p>
           <p class=info *ngIf="prescription.value.redeemed"> abgeholt <i class="fas fa-check"></i></p>
       </div>
      </div>

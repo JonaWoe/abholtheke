@@ -8,6 +8,7 @@ export class Prescription {
   medicineId: string;
   insuranceId: string;
   redeemed: boolean;
+  ready: boolean;
   description: string;
   imgUrl: string;
   pharmacyId: string;

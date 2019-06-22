@@ -15,8 +15,10 @@
             <p class=info>Öffnungszeiten: {{pharmacy.openingHours}}</p>
             <p class=info>Telefon: {{pharmacy.phone}}</p>
             <p class=info>Gesamtpreis: {{pharmacy.price}}</p>
-            <p class=info>Lagerbestand: {{pharmacy.stock}} 
-                <button class=button-primary (click)="choosePharmacy(pharmacy, modal)">Auswählen</button></p>
+            <p class=info *ngIf="pharmacy.stock">Lagerbestand: Ok
+              <button class=button-primary (click)="choosePharmacy(pharmacy, modal)">Auswählen</button></p>
+            <p class=info *ngIf="!pharmacy.stock">Lagerbestand: leer
+              <button class=button-primary (click)="choosePharmacy(pharmacy, modal)">Auswählen</button></p>
           </div>
         </div>
       </section>

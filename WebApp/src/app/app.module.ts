@@ -14,11 +14,13 @@ import { routing } from './app.routing';
 import { AlertComponent } from './_components';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
-import { LoginComponent } from './login';
+import { PatientLoginComponent } from './patient-login';
 import { RegisterComponent } from './register/';
 import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
 import { ChoosePharmacyModal} from './prescriptions/choosePharmacy.modal/choosePharmacy.modal';
 import { WithGoogleComponent } from './register/withGoogle/withGoogle.component';
+import { PharmacistLoginComponent } from './pharmacist-login';
+import { PharmacyComponent } from './pharmacy/pharmacy.component';
 
 
 const googleLoginOptions: LoginOpt = {
@@ -48,11 +50,13 @@ export function provideConfig() {
     AppComponent,
     AlertComponent,
     HomeComponent,
-    LoginComponent,
+    PatientLoginComponent,
     RegisterComponent,
     PrescriptionsComponent,
     ChoosePharmacyModal,
-    WithGoogleComponent
+    WithGoogleComponent,
+    PharmacistLoginComponent,
+    PharmacyComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

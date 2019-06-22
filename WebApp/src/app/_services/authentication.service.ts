@@ -21,7 +21,7 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(insuranceId: string, password: string) {
+  loginPatient(insuranceId: string, password: string) {
     return this.http.post<any>(environment.endpointUrl + '/authenticate', { insuranceId, password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
@@ -41,6 +41,20 @@ export class AuthenticationService {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
 
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+        }
+
+        return user;
+      }));
+  }
+
+  loginPharmacist(eMail: string, password: string) {
+    return this.http.post<any>(environment.endpointUrl + '/authenticate/pharmacist', { eMail, password })
+      .pipe(map(user => {
+        // login successful if there's a jwt token in the response
+        if (user && user.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);

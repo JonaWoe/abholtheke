@@ -31,6 +31,7 @@ router.get('/:insuranceId', async function (req, res) {
                     amount: cryptoService.decrypt(prescription.amount),
                     medicineId: cryptoService.decrypt(prescription.medicineId),
                     redeemed: JSON.parse(cryptoService.decrypt(prescription.redeemed)),
+                    ready: JSON.parse(cryptoService.decrypt(prescription.ready)),
                     time: JSON.parse(cryptoService.decrypt(prescription.time)),
                     duration: cryptoService.decrypt(prescription.duration),
                     description: cryptoService.decrypt(prescription.description),

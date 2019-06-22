@@ -15,17 +15,17 @@ module.exports = {
 
         user.role = 1;
 
-        dbo.collection('user').insertOne(user, function(err, res) {
+        dbo.collection('users').insertOne(user, function(err, res) {
             if (err) throw err;
             console.log("Number of documents inserted: " + res.insertedCount);
         });
     },
 
     getUserByInsuranceId: function(dbo, insuranceId) {
-        return dbo.collection('user').findOne({insuranceId: insuranceId});
+        return dbo.collection('users').findOne({insuranceId: insuranceId});
     },
 
     getUserByGoogleId: function(dbo, googleId) {
-        return dbo.collection('user').findOne({googleId: googleId});
+        return dbo.collection('users').findOne({googleId: googleId});
     }
 };

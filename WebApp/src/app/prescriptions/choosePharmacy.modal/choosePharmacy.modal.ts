@@ -1,10 +1,10 @@
-import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
-import {Pharmacies, Prescription, User} from '../../_models';
+import { Pharmacy, Prescription, User } from '../../_models';
 import { PrescriptionService, PharmaciesService, AuthenticationService, AlertService } from '../../_services';
 
 @Component({
@@ -15,7 +15,7 @@ import { PrescriptionService, PharmaciesService, AuthenticationService, AlertSer
 // tslint:disable-next-line:component-class-suffix
 export class ChoosePharmacyModal implements OnInit, OnDestroy {
   closeResult: string;
-  pharmacies: Pharmacies[] = [];
+  pharmacies: Pharmacy[] = [];
   currentUser: User;
   currentUserSubscription: Subscription;
   @Input() prescription: Prescription;

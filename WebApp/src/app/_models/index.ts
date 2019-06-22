@@ -1,3 +1,4 @@
 export * from './user';
 export * from './prescription';
-export * from './pharmacies';
+export * from './pharmacy';
+export * from './pharmacist';

@@ -1,4 +1,5 @@
 const cryptoService = require('./../authentication/crypto.service');
+const {ObjectId} = require("mongodb");
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://admin:admin@abholtheke-inim5.gcp.mongodb.net/test?retryWrites=true&w=majority";
 //const url = "mongodb://localhost:27017";
@@ -23,15 +24,15 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
 
     //Mock Data for prescriptions
     const prescriptions = [
-        { issuedBy: 'Dr. med. Gerald Stein', expireDate: '01.08.2019', medicine: 'Ibuprofen', amount: '600mg',  medicineId: '7f428de0-87a3-11e9-bc42-526af7764f64', insuranceId: '1', pharmacyId: '', redeemed: false, time: [6,12,18], duration:'3', description:'Mit Wasser schlucken',  imgUrl: 'https://www.oxfordonlinepharmacy.co.uk/images/products/IMG_5707.jpg'},
-        { issuedBy: 'Dr. med. Gerald Stein', expireDate: '05.08.2019', medicine: 'Thomapyrin', amount: '300mg', medicineId: '245add5e-87a5-11e9-bc42-526af7764f64', insuranceId: '1', pharmacyId: '5d03dbacfd1b0f28343778de', redeemed: false, time: [7,13,18], duration:'2', description:'Nach dem Essen', imgUrl: 'https://www.europa-apotheek.com/pix/productphotos/0624605.jpg'},
-        { issuedBy: 'Dr. med. Gerald Stein', expireDate: '10.08.2019', medicine: 'Aspirin', amount: '500mg', medicineId: '2b8530d4-87a5-11e9-bc42-526af7764f64', insuranceId: '1', pharmacyId: '5d03dbacfd1b0f28343778de', redeemed: true, time: [8,14,18], duration:'1', description:'In Wasser auflösen', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'},
-        { issuedBy: 'Dr. med. Marcel Schmidt', expireDate: '01.08.2019', medicine: 'Mucosolvan', amount: '500ml', medicineId: '3004de84-87a5-11e9-bc42-526af7764f64', insuranceId: '1', pharmacyId: '', redeemed: false, time: [9,15,18], duration:'5', description:'Schlucken', imgUrl: 'https://www.docmorris.de/images/produkte/large/00057879/MucosolvanRetardkapseln75mg.jpg'},
-        { issuedBy: 'Dr. med. Marcel Schmidt', expireDate: '05.08.2019', medicine: 'Dobendan', amount: '600mg', medicineId: '34bd3570-87a5-11e9-bc42-526af7764f64', insuranceId: '2', pharmacyId: '', redeemed: false, time: [10,16,18], duration:'3', description:'Lutschen', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'},
-        { issuedBy: 'Dr. med. Marcel Schmidt', expireDate: '10.08.2019', medicine: 'Snup', amount: '100ml', medicineId: '3948e512-87a5-11e9-bc42-526af7764f64', insuranceId: '2', pharmacyId: '', redeemed: false, time: [6,17,20], duration:'4', description:'Ohne Wasser schlucken', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'},
-        { issuedBy: 'Dr. med. Ulrike Stock', expireDate: '01.08.2019', medicine: 'GeloMyrtol 600mg', amount: '400mg', medicineId: '3db895fc-87a5-11e9-bc42-526af7764f64', insuranceId: '3', pharmacyId: '5d03dbacfd1b0f28343778de', redeemed: true, time: [7,12,18], duration:'6', description:'Mit Wasser schlucken', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'},
-        { issuedBy: 'Dr. med. Ulrike Stock', expireDate: '05.08.2019', medicine: 'Penicillin', amount: '100mg', medicineId: '429e0d86-87a5-11e9-bc42-526af7764f64', insuranceId: '3', pharmacyId: '5d03dbacfd1b0f28343778de', redeemed: false, time: [8,11,15], duration:'4', description:'Vor dem Essen', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'},
-        { issuedBy: 'Dr. med. Ulrike Stock', expireDate: '10.08.2019', medicine: 'Paracetamol', amount: '1200mg', medicineId: '468171e0-87a5-11e9-bc42-526af7764f64', insuranceId: '3', pharmacyId: '', redeemed: false, time: [9,12,18], duration:'3', description:'Mit Wasser schlucken', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'}
+        { issuedBy: 'Dr. med. Gerald Stein', expireDate: '01.08.2019', medicine: 'Ibuprofen', amount: '600mg',  medicineId: '7f428de0-87a3-11e9-bc42-526af7764f64', insuranceId: '1', pharmacyId: '', ready: false, redeemed: false, time: [6,12,18], duration:'3', description:'Mit Wasser schlucken',  imgUrl: 'https://www.oxfordonlinepharmacy.co.uk/images/products/IMG_5707.jpg'},
+        { issuedBy: 'Dr. med. Gerald Stein', expireDate: '05.08.2019', medicine: 'Thomapyrin', amount: '300mg', medicineId: '245add5e-87a5-11e9-bc42-526af7764f64', insuranceId: '1', pharmacyId: '5d0defbcc340ba37a80f73c0', ready: false, redeemed: false, time: [7,13,18], duration:'2', description:'Nach dem Essen', imgUrl: 'https://www.europa-apotheek.com/pix/productphotos/0624605.jpg'},
+        { issuedBy: 'Dr. med. Gerald Stein', expireDate: '10.08.2019', medicine: 'Aspirin', amount: '500mg', medicineId: '2b8530d4-87a5-11e9-bc42-526af7764f64', insuranceId: '1', pharmacyId: '5d0defbcc340ba37a80f73c0', ready: true, redeemed: true, time: [8,14,18], duration:'1', description:'In Wasser auflösen', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'},
+        { issuedBy: 'Dr. med. Marcel Schmidt', expireDate: '01.08.2019', medicine: 'Mucosolvan', amount: '500ml', medicineId: '3004de84-87a5-11e9-bc42-526af7764f64', insuranceId: '1', pharmacyId: '', ready: false, redeemed: false, time: [9,15,18], duration:'5', description:'Schlucken', imgUrl: 'https://www.docmorris.de/images/produkte/large/00057879/MucosolvanRetardkapseln75mg.jpg'},
+        { issuedBy: 'Dr. med. Marcel Schmidt', expireDate: '05.08.2019', medicine: 'Dobendan', amount: '600mg', medicineId: '34bd3570-87a5-11e9-bc42-526af7764f64', insuranceId: '2', pharmacyId: '', ready: false, redeemed: false, time: [10,16,18], duration:'3', description:'Lutschen', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'},
+        { issuedBy: 'Dr. med. Marcel Schmidt', expireDate: '10.08.2019', medicine: 'Snup', amount: '100ml', medicineId: '3948e512-87a5-11e9-bc42-526af7764f64', insuranceId: '2', pharmacyId: '', ready: false, redeemed: false, time: [6,17,20], duration:'4', description:'Ohne Wasser schlucken', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'},
+        { issuedBy: 'Dr. med. Ulrike Stock', expireDate: '01.08.2019', medicine: 'GeloMyrtol 600mg', amount: '400mg', medicineId: '3db895fc-87a5-11e9-bc42-526af7764f64', insuranceId: '3', pharmacyId: '5d0defbcc340ba37a80f73c1', ready: true, redeemed: true, time: [7,12,18], duration:'6', description:'Mit Wasser schlucken', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'},
+        { issuedBy: 'Dr. med. Ulrike Stock', expireDate: '05.08.2019', medicine: 'Penicillin', amount: '100mg', medicineId: '429e0d86-87a5-11e9-bc42-526af7764f64', insuranceId: '3', pharmacyId: '5d0defbcc340ba37a80f73c1', ready: true, redeemed: false, time: [8,11,15], duration:'4', description:'Vor dem Essen', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'},
+        { issuedBy: 'Dr. med. Ulrike Stock', expireDate: '10.08.2019', medicine: 'Paracetamol', amount: '1200mg', medicineId: '468171e0-87a5-11e9-bc42-526af7764f64', insuranceId: '3', pharmacyId: '', ready: false, redeemed: false, time: [9,12,18], duration:'3', description:'Mit Wasser schlucken', imgUrl: 'https://static.shop-apotheke.com/images/245x245/aspirin-plus-c-brausetabletten-brausetabletten-D01406632-p1.jpg'}
 
     ];
 
@@ -47,6 +48,7 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
             insuranceId: prescription.insuranceId,
             pharmacyId: prescription.pharmacyId,
             redeemed: cryptoService.encrypt(JSON.stringify(prescription.redeemed)),
+            ready: cryptoService.encrypt(JSON.stringify(prescription.ready)),
             time: cryptoService.encrypt(JSON.stringify(prescription.time)),
             duration: cryptoService.encrypt(prescription.duration),
             description: cryptoService.encrypt(prescription.description),
@@ -56,13 +58,22 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
     }
 
     const pharmacies = [
-        { name:'Zentral Apotheke', adress: 'Kaiserstr. 112 76133 Karlsruhe', openingHours: '08:30-20:00', telefon: '0721 913330', price: '150,40€', stock: 'true'},
-        { name:'Hauptpost-Apotheke Karlsruhe', adress: 'Kaiserstr. 156 76133 Karlsruhe', openingHours: '08:30-19:00', telefon: '0721 28603', price: '155,40€', stock: 'false'},
-        { name:'Hof-Apotheke', adress: 'Kaiserstr. 201 76133 Karlsruhe', openingHours: '08:30-19:00', telefon: '0721 24591', price: '160,70€', stock: 'false'},
-        { name:'Congress Apotheke', adress: 'Ettlinger Str. 5 76137 Karlsruhe', openingHours: '08:30-18:00', telefon: '0721 356360', price: '139,15', stock:'true'},
+        { _id: ObjectId('5d0defbcc340ba37a80f73c0'), name:'Zentral Apotheke', address: 'Kaiserstr. 112 76133 Karlsruhe', openingHours: '08:30-20:00', phone: '0721 913330', price: '150,40€', stock: 'true'},
+        { _id: ObjectId('5d0defbcc340ba37a80f73c1'), name:'Hauptpost-Apotheke Karlsruhe', address: 'Kaiserstr. 156 76133 Karlsruhe', openingHours: '08:30-19:00', phone: '0721 28603', price: '155,40€', stock: 'false'},
+        { _id: ObjectId('5d0defbcc340ba37a80f73c2'), name:'Hof-Apotheke', address: 'Kaiserstr. 201 76133 Karlsruhe', openingHours: '08:30-19:00', phone: '0721 24591', price: '160,70€', stock: 'false'},
+        { _id: ObjectId('5d0defbcc340ba37a80f73c3'), name:'Congress Apotheke', address: 'Ettlinger Str. 5 76137 Karlsruhe', openingHours: '08:30-18:00', phone: '0721 356360', price: '139,15', stock:'true'},
     ];
 
-    dbo.collection('user').insertMany(user, function(err, res) {
+    const pharmacist = [
+        { firstName: 'Kai', lastName: 'Uwe', eMail: 'kai.uwe@gmail.com', password: '$2a$10$iWGoWqfrJSuzP0PRdRZoEOfgyCl.Zo7T4IKe0zr93JzWJab6Hzvcq', role: 2, pharmacyId: '5d0defbcc340ba37a80f73c0'},
+        { firstName: 'Lara', lastName: 'Croft', eMail: 'lara.croft@yahoo.com', password: '$2a$10$iWGoWqfrJSuzP0PRdRZoEOfgyCl.Zo7T4IKe0zr93JzWJab6Hzvcq', role: 2, pharmacyId: '5d0defbcc340ba37a80f73c1'},
+        { firstName: 'Luke', lastName: 'Skywalker', eMail: 'luke.skywalker@fremail.com', password: '$2a$10$iWGoWqfrJSuzP0PRdRZoEOfgyCl.Zo7T4IKe0zr93JzWJab6Hzvcq', role: 2, pharmacyId: '5d0defbcc340ba37a80f73c2'},
+        { firstName: 'Jones', lastName: 'Indiana', eMail: 'jones.indiana@googlemail.com', password: '$2a$10$iWGoWqfrJSuzP0PRdRZoEOfgyCl.Zo7T4IKe0zr93JzWJab6Hzvcq', role: 2, pharmacyId: '5d0defbcc340ba37a80f73c3'},
+    ];
+
+
+
+    dbo.collection('users').insertMany(user, function(err, res) {
         if (err) throw err;
         console.log('Number of documents inserted: ' + res.insertedCount);
     });
@@ -73,6 +84,11 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
     });
 
     dbo.collection('pharmacies').insertMany(pharmacies, function(err, res) {
+        if (err) throw err;
+        console.log('Number of documents inserted: ' + res.insertedCount);
+    });
+
+    dbo.collection('pharmacists').insertMany(pharmacist, function(err, res) {
         if (err) throw err;
         console.log('Number of documents inserted: ' + res.insertedCount);
     });
