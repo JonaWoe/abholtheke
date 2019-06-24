@@ -20,6 +20,10 @@ export class PrescriptionService {
     return this.http.get<Prescription[]>(environment.endpointUrl + '/prescription/' + insuranceId , this.httpOptions);
   }
 
+  getPrescriptionsByPharmacyId(pharmacyId) {
+    return this.http.get<Prescription[]>(environment.endpointUrl + '/prescription/pharmacy/' + pharmacyId , this.httpOptions);
+  }
+
   addPharmacy(prescriptionId, pharmacyId) {
     return this.http.post(environment.endpointUrl + '/prescription/', {prescriptionId, pharmacyId}, this.httpOptions);
   }

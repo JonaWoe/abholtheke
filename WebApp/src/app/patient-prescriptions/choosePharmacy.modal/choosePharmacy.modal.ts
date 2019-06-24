@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { Pharmacy, Prescription, User } from '../../_models';
-import { PrescriptionService, PharmaciesService, AuthenticationService, AlertService } from '../../_services';
+import { PrescriptionService, PharmacyService, AuthenticationService, AlertService } from '../../_services';
 
 @Component({
   selector: 'app-pharmacy-modal',
@@ -23,7 +23,7 @@ export class ChoosePharmacyModal implements OnInit, OnDestroy {
   constructor(
     private modalService: NgbModal,
     private authenticationService: AuthenticationService,
-    private pharmaciesService: PharmaciesService,
+    private pharmaciesService: PharmacyService,
     private prescriptionService: PrescriptionService,
     private alertService: AlertService
   ) {

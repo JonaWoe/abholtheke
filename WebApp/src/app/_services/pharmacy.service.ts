@@ -5,7 +5,7 @@ import { Pharmacy } from '../_models';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
-export class PharmaciesService {
+export class PharmacyService {
   constructor(private http: HttpClient) { }
 
   httpOptions = {
@@ -15,7 +15,7 @@ export class PharmaciesService {
   };
 
   getPharmacies() {
-    return this.http.get<Pharmacy[]>(environment.endpointUrl + '/Pharmacies', this.httpOptions);
+    return this.http.get<Pharmacy[]>(environment.endpointUrl + '/pharmacies', this.httpOptions);
   }
 
 }

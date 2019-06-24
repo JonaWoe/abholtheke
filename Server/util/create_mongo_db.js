@@ -64,11 +64,26 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
         { _id: ObjectId('5d0defbcc340ba37a80f73c3'), name:'Congress Apotheke', address: 'Ettlinger Str. 5 76137 Karlsruhe', openingHours: '08:30-18:00', phone: '0721 356360', price: '139,15', stock:'true'},
     ];
 
-    const pharmacist = [
+    const pharmacists = [
         { firstName: 'Kai', lastName: 'Uwe', eMail: 'kai.uwe@gmail.com', password: '$2a$10$iWGoWqfrJSuzP0PRdRZoEOfgyCl.Zo7T4IKe0zr93JzWJab6Hzvcq', role: 2, pharmacyId: '5d0defbcc340ba37a80f73c0'},
         { firstName: 'Lara', lastName: 'Croft', eMail: 'lara.croft@yahoo.com', password: '$2a$10$iWGoWqfrJSuzP0PRdRZoEOfgyCl.Zo7T4IKe0zr93JzWJab6Hzvcq', role: 2, pharmacyId: '5d0defbcc340ba37a80f73c1'},
         { firstName: 'Luke', lastName: 'Skywalker', eMail: 'luke.skywalker@fremail.com', password: '$2a$10$iWGoWqfrJSuzP0PRdRZoEOfgyCl.Zo7T4IKe0zr93JzWJab6Hzvcq', role: 2, pharmacyId: '5d0defbcc340ba37a80f73c2'},
         { firstName: 'Jones', lastName: 'Indiana', eMail: 'jones.indiana@googlemail.com', password: '$2a$10$iWGoWqfrJSuzP0PRdRZoEOfgyCl.Zo7T4IKe0zr93JzWJab6Hzvcq', role: 2, pharmacyId: '5d0defbcc340ba37a80f73c3'},
+    ];
+
+    const boxes = [
+        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '1', prescriptionId:'', status: '' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '2', prescriptionId:'', status: '' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '3', prescriptionId:'', status: '' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '1', prescriptionId:'', status: '' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '2', prescriptionId:'', status: '' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '3', prescriptionId:'', status: '' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '1', prescriptionId:'', status: '' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '2', prescriptionId:'', status: '' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '3', prescriptionId:'', status: '' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '1', prescriptionId:'', status: '' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '2', prescriptionId:'', status: '' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '3', prescriptionId:'', status: '' }
     ];
 
 
@@ -88,7 +103,12 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
         console.log('Number of documents inserted: ' + res.insertedCount);
     });
 
-    dbo.collection('pharmacists').insertMany(pharmacist, function(err, res) {
+    dbo.collection('pharmacists').insertMany(pharmacists, function(err, res) {
+        if (err) throw err;
+        console.log('Number of documents inserted: ' + res.insertedCount);
+    });
+
+    dbo.collection('boxes').insertMany(boxes, function(err, res) {
         if (err) throw err;
         console.log('Number of documents inserted: ' + res.insertedCount);
     });
