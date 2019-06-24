@@ -5,7 +5,7 @@ module.exports = {
     },
 
     getUsers: function(dbo) {
-        return dbo.collection('user').find().toArray();
+        return dbo.collection('users').find().toArray();
     }
 
 };
