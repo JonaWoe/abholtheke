@@ -73,18 +73,18 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
     ];
 
     const boxes = [
-        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '1', prescriptionId:'', status: '' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '2', prescriptionId:'', status: '' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '3', prescriptionId:'', status: '' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '1', prescriptionId:'', status: '' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '2', prescriptionId:'', status: '' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '3', prescriptionId:'', status: '' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '1', prescriptionId:'', status: '' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '2', prescriptionId:'', status: '' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '3', prescriptionId:'', status: '' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '1', prescriptionId:'', status: '' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '2', prescriptionId:'', status: '' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '3', prescriptionId:'', status: '' }
+        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '1', prescriptionId:'', status: 'empty', date:'' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '2', prescriptionId:'', status: 'empty', date:'' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '3', prescriptionId:'', status: 'empty', date:'' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '1', prescriptionId:'', status: 'empty', date:'' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '2', prescriptionId:'', status: 'empty', date:'' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '3', prescriptionId:'', status: 'empty', date:'' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '1', prescriptionId:'', status: 'empty', date:'' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '2', prescriptionId:'', status: 'empty', date:'' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '3', prescriptionId:'', status: 'empty', date:'' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '1', prescriptionId:'', status: 'empty', date:'' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '2', prescriptionId:'', status: 'empty', date:'' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '3', prescriptionId:'', status: 'empty', date:'' }
     ];
 
 
