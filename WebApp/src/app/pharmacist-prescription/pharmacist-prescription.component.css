@@ -5,7 +5,6 @@ div, section, h2, p{
     padding:0;
 }
 
-
 .list-item{
   margin:0;
   padding:0;
@@ -46,7 +45,7 @@ div, section, h2, p{
 }
 
 .info{
-    line-height:2rem;
+    line-height:2.4rem;
     margin:0 0 0 1rem;
 }
 
@@ -59,7 +58,7 @@ button, .button-primary{
     display:flex;
     flex-direction:row;
     text-decoration: none;
-    padding:2rem;
+    padding:0.5;
     margin-left:3rem;
     border-radius: 2px;
     border:0;
