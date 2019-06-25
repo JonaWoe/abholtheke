@@ -2,8 +2,8 @@
     <h2>Freie Boxen</h2>
     <section class=item-info-wrapper *ngFor="let box of boxes | keyvalue">
       <div class="container">
-          <p class=info> {{box.value.boxNumber}}</p>
-          <p class=info> {{box.value.status}}</p>
+          <p class=info>Box Nummer: {{box.value.boxNumber}}</p>
+          <p class=info>Status: {{box.value.status}}</p>
       </div>
     </section>
   </div>
