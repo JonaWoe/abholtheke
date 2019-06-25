@@ -1,3 +1,14 @@
-<p>
-  pharmacist-prescription works!
-</p>
+<div class="list-item">
+  <h2>Eingehende Bestellungen</h2>
+  <section class=item-info-wrapper *ngFor="let prescription of prescriptions | keyvalue">
+    <div class="container">
+      <div class=item-img><img class=item-img [src]="prescription.value.imgUrl" /></div>
+      <div class=item-info>
+        <p class=info> {{prescription.value.medicine}}, {{prescription.value.amount}} </p>
+        <p class=info> {{prescription.value.issuedBy}}</p>
+        <p class=info>Gültig bis: {{prescription.value.expireDate}}</p>
+        <p class=info>Versichertennummer: {{prescription.value.insuranceId}}</p>
+      </div>
+    </div>
+  </section>
+</div>

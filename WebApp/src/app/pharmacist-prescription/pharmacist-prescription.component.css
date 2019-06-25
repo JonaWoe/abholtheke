@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+
+div, section, h2, p{
+    margin:0;
+    padding:0;
+}
+
+
+.list-item{
+  margin:0;
+  padding:0;
+}
+
+.item-info-wrapper{
+    display:flex;
+    flex-direction:column;
+    margin: 2rem 0;
+}
+
+.container{
+    display:flex;
+    flex-direction: row;
+    margin:0;
+    padding:0;
+
+}
+
+.item-img{
+    width:9rem;
+    height:9rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+ }
+
+.item-info{
+    display:flex;
+    flex-direction: column;
+}
+
+.item-status{
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    margin:0.5rem 0 0 0;
+}
+
+.info{
+    line-height:2rem;
+    margin:0 0 0 1rem;
+}
+
+button, .button-primary{
+    width:auto;
+    font-size: 0.875rem;
+    font-weight:bold;
+    background-color: rgb(6, 100, 6);
+    color:white;
+    display:flex;
+    flex-direction:row;
+    text-decoration: none;
+    padding:2rem;
+    margin-left:3rem;
+    border-radius: 2px;
+    border:0;
+}
+
+
