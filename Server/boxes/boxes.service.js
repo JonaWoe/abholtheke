@@ -19,6 +19,6 @@ module.exports = {
     },
 
     updateBoxStatus: function (dbo, _id, status) {
-        return  dbo.collection('boxes').findOneAndUpdate({_id: ObjectId(_id)}, {$set: {status:status}});
+        return  dbo.collection('boxes').findOneAndUpdate({_id: ObjectId(_id)}, {$set: {status:status, date: new Date()}});
     }
 };

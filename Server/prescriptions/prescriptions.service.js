@@ -16,7 +16,8 @@ module.exports = {
     },
 
     updatePrescriptionPharmacyId: function (dbo, prescriptionId, pharmacyId) {
-        return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {pharmacyId: pharmacyId}});
+        const encryptedDate = cryptoService.encrypt(JSON.stringify(new Date()));
+        return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {pharmacyId: pharmacyId, assignedAt: encryptedDate }});
     },
 
     decryptPrescriptions(prescriptions) {
@@ -36,7 +37,8 @@ module.exports = {
                 time: JSON.parse(cryptoService.decrypt(prescription.time)),
                 duration: cryptoService.decrypt(prescription.duration),
                 description: cryptoService.decrypt(prescription.description),
-                imgUrl: cryptoService.decrypt(prescription.imgUrl)
+                imgUrl: cryptoService.decrypt(prescription.imgUrl),
+                assignedAt:JSON.parse(cryptoService.decrypt(prescription.assignedAt))
             };
             decryptedPrescriptions.push(decryptedPrescription);
         }
