@@ -10,8 +10,8 @@
         <p class=info>Versicherungsnummer: {{prescription.value.insuranceId}}</p>
       </div>
       <div class=item-info>
+        <!-- TODO status des rezeptes überprüfen, button nur anzeigen wenn noch nicht eingelagert -->
         <app-box-modal [prescription]="prescription.value"></app-box-modal>
-        <!--p class=info><button class=button-primary></button></p-->
       </div>
     </div>
   </section>

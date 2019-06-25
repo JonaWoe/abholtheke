@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   { path: 'patient/prescriptions', component: PatientPrescriptionsComponent, canActivate: [PatientAuthGuard]},
   { path: 'pharmacist', component: PharmacistHomeComponent, canActivate: [PharmacistAuthGuard] },
   { path: 'pharmacist/login', component: PharmacistLoginComponent },
-  { path: 'pharmacist/prescriptions', component: PharmacistPrescriptionComponent },
+  { path: 'pharmacist/prescriptions', component: PharmacistPrescriptionComponent, canActivate: [PharmacistAuthGuard]  },
 
 
   // otherwise redirect to patientLogin

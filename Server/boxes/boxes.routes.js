@@ -27,6 +27,29 @@ router.get('/:pharmacyId', async function (req, res) {
     }
 });
 
+router.get('/:pharmacyId/:boxNumber', async function (req, res) {
+
+    const accessToken = req.header('authorization').split(' ')[1];
+    const verifiedToken = jwt.verify(accessToken);
+
+    const pharmacyId = req.params.pharmacyId;
+    const boxNumber = req.params.boxNumber;
+
+    if (verifiedToken && verifiedToken.role === 2 && verifiedToken.pharmacyId === pharmacyId ) {
+        try {
+            const dbo = req.app.locals.dbo;
+            const box = await boxesService.getBoxByPharmacyIdAndNumber(dbo, pharmacyId, boxNumber);
+            res.status(200).json(box);
+        } catch (err) {
+            res.status(503).json({message: 'Keine DB Verbindung!'});
+            console.log(err);
+        }
+    } else {
+        res.status(401).json({message: 'Nutzer nicht authorisiert'});
+    }
+});
+
+
 router.post('/prescription', async (req, res) => {
 
     const accessToken = req.header('authorization').split(' ')[1];

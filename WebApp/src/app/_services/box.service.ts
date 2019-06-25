@@ -14,6 +14,10 @@ export class BoxService {
     })
   };
 
+  getBoxByPharmacyIdAndBoxNumber(pharmacyId, boxNumber) {
+    return this.http.get<Box>(environment.endpointUrl + '/boxes/' + pharmacyId + '/' + boxNumber, this.httpOptions);
+  }
+
   getBoxesByPharmacyId(pharmacyId) {
     return this.http.get<Box[]>(environment.endpointUrl + '/boxes/' + pharmacyId, this.httpOptions);
   }

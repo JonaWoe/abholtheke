@@ -35,7 +35,6 @@ export class PharmacistPrescriptionComponent implements OnInit {
   private loadAllPrescriptions() {
     this.prescriptionService.getPrescriptionsByPharmacyId(this.currentUser.pharmacyId).pipe(first()).subscribe(prescriptions => {
       this.prescriptions = prescriptions;
-      console.log(this.prescriptions);
     });
   }
 
@@ -43,15 +42,6 @@ export class PharmacistPrescriptionComponent implements OnInit {
     this.boxService.getBoxesByPharmacyId(this.currentUser.pharmacyId).pipe(first()).subscribe(boxes => {
       this.boxes = boxes;
     });
-  }
-
-  private updateBoxPrescriptionId(boxId, prescriptionId) {
-    this.boxService.updateBoxPrescriptionId(boxId, prescriptionId).subscribe(data => {
-        this.alertService.success('Änderung gespeichert!');
-      },
-      error => {
-        this.alertService.error(error);
-      });
   }
 
   private getFormatedDate(date)  {

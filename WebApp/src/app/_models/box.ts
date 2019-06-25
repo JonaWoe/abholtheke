@@ -5,4 +5,5 @@ export class Box {
   boxNumber: string;
   prescriptionId: string;
   status: string;
+  date: string;
 }

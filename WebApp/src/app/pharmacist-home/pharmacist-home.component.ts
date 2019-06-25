@@ -31,4 +31,8 @@ export class PharmacistHomeComponent implements OnInit {
     });
   }
 
+  private getFormatedDate(date)  {
+    return new Date(date).toLocaleString();
+  }
+
 }

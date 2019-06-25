@@ -1,11 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { first, flatMap, tap } from 'rxjs/operators';
 
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
-import {Box, Pharmacist, Prescription} from '../../_models';
-import {PrescriptionService, AuthenticationService, AlertService, BoxService} from '../../_services';
+import { Box, Pharmacist, Prescription } from '../../_models';
+import { PrescriptionService, AuthenticationService, AlertService, BoxService } from '../../_services';
 
 @Component({
   selector: 'app-box-modal',
@@ -14,11 +14,13 @@ import {PrescriptionService, AuthenticationService, AlertService, BoxService} fr
 })
 // tslint:disable-next-line:component-class-suffix
 export class ChooseBoxModal implements OnInit, OnDestroy {
-  closeResult: string;
+
   boxes: Box[] = [];
+  box: Box;
   currentUser: Pharmacist;
   currentUserSubscription: Subscription;
   @Input() prescription: Prescription;
+  cameraAvailable = true;
 
   constructor(
     private modalService: NgbModal,
@@ -34,10 +36,11 @@ export class ChooseBoxModal implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadAllBoxes();
+    this.detectWebcam();
   }
 
+
   ngOnDestroy() {
-    // unsubscribe to ensure no memory leaks
     this.currentUserSubscription.unsubscribe();
   }
 
@@ -47,38 +50,51 @@ export class ChooseBoxModal implements OnInit, OnDestroy {
     });
   }
 
-  // for more info see https://ng-bootstrap.github.io/#/components/modal/examples
-
   open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'box-modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService.open(content, { ariaLabelledBy: 'box-modal-basic-title' });
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
+
+  // TODO überprüfung ob box leer (serversetig) anzige fehler falls nicht
+
+  private scanSuccessHandler($event) {
+    const splitedText = $event.split(':');
+    const pharmacyId = splitedText[0];
+    const boxNumber = splitedText[1];
+    this.boxService.getBoxByPharmacyIdAndBoxNumber(pharmacyId, boxNumber)
+      .pipe(
+        tap(box => this.box = box),
+        flatMap(_ => this.boxService.updateBoxPrescriptionId(this.box._id, this.prescription._id) ))
+      .subscribe(data => {
+        this.alertService.success('Box '  + boxNumber  + ' ausgewählt!');
+        this.modalService.dismissAll();
+      }, error => {
+        this.alertService.error(error);
+        this.modalService.dismissAll();
+      });
+  }
+
+  private detectWebcam() {
+    const md = navigator.mediaDevices;
+    if (!md || !md.enumerateDevices) {
+      this.cameraAvailable = false;
     } else {
-      return `with: ${reason}`;
+      md.enumerateDevices().then(devices => {
+        this.cameraAvailable = devices.some(device => 'videoinput' === device.kind);
+      });
     }
   }
 
-  private choosePharmacy(pharmacy, modal) {
-    this.prescriptionService.addPharmacy(this.prescription._id, pharmacy._id)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.alertService.success('Apotheke erfolgreich ausgewählt!', true);
-          this.prescription.pharmacyId = pharmacy._id;
-          modal.dismiss();
-        },
-        error => {
-          this.alertService.error('Apothekenauswahl fehlgeschlagen!');
-          modal.dismiss();
-        });
+
+  // TODO nur boxen auswählbar machen wenn status == empty
+
+  private chooseBox(box) {
+    this.boxService.updateBoxPrescriptionId(box._id, this.prescription._id).subscribe(data => {
+      this.alertService.success('Box '  + box.boxNumber  + ' ausgewählt!');
+      this.modalService.dismissAll();
+    }, error => {
+      this.alertService.error(error);
+      this.modalService.dismissAll();
+    });
   }
 }

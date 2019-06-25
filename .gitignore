@@ -12,6 +12,8 @@
 /server/node_modules
 /WebDav/node_modules
 /WebApp/node_modules
+/WebApp/.firebase
+.firebase
 
 # profiling files
 chrome-profiler-events.json
@@ -47,3 +49,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+WebApp/.firebase/

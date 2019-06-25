@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, LoginOpt} from 'angularx-social-login';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -43,6 +44,7 @@ export function provideConfig() {
     HttpClientModule,
     routing,
     SocialLoginModule,
+    ZXingScannerModule,
     NgbModule
   ],
   declarations: [
