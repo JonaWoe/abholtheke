@@ -4,36 +4,36 @@ import { first } from 'rxjs/operators';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
-import { Pharmacy, Prescription, User } from '../../_models';
-import { PrescriptionService, PharmacyService, AuthenticationService, AlertService } from '../../_services';
+import {Box, Pharmacist, Prescription} from '../../_models';
+import {PrescriptionService, AuthenticationService, AlertService, BoxService} from '../../_services';
 
 @Component({
-  selector: 'app-pharmacy-modal',
-  templateUrl: './choosePharmacy.modal.html',
-  styleUrls: ['./choosePharmacy.modal.css']
+  selector: 'app-box-modal',
+  templateUrl: './chooseBox.modal.html',
+  styleUrls: ['./chooseBox.modal.css']
 })
 // tslint:disable-next-line:component-class-suffix
-export class ChoosePharmacyModal implements OnInit, OnDestroy {
+export class ChooseBoxModal implements OnInit, OnDestroy {
   closeResult: string;
-  pharmacies: Pharmacy[] = [];
-  currentUser: User;
+  boxes: Box[] = [];
+  currentUser: Pharmacist;
   currentUserSubscription: Subscription;
   @Input() prescription: Prescription;
 
   constructor(
     private modalService: NgbModal,
     private authenticationService: AuthenticationService,
-    private pharmaciesService: PharmacyService,
+    private boxService: BoxService,
     private prescriptionService: PrescriptionService,
     private alertService: AlertService
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
-      this.currentUser = user;
+      this.currentUser = (user as unknown as Pharmacist);
     });
   }
 
   ngOnInit() {
-    this.loadAllPharmacies();
+    this.loadAllBoxes();
   }
 
   ngOnDestroy() {
@@ -41,16 +41,16 @@ export class ChoosePharmacyModal implements OnInit, OnDestroy {
     this.currentUserSubscription.unsubscribe();
   }
 
-  private loadAllPharmacies() {
-    this.pharmaciesService.getPharmacies().pipe(first()).subscribe(pharmacies => {
-      this.pharmacies = pharmacies;
+  private loadAllBoxes() {
+    this.boxService.getBoxesByPharmacyId(this.currentUser.pharmacyId).pipe(first()).subscribe(boxes => {
+      this.boxes = boxes;
     });
   }
 
   // for more info see https://ng-bootstrap.github.io/#/components/modal/examples
 
   open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'pharmacy-modal-basic-title' }).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'box-modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

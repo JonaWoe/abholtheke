@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PrescriptionService, BoxService, AuthenticationService, AlertService } from '../_services';
 import { Box, Pharmacist, Prescription } from '../_models';
 import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pharmacist-prescription',
@@ -35,6 +35,7 @@ export class PharmacistPrescriptionComponent implements OnInit {
   private loadAllPrescriptions() {
     this.prescriptionService.getPrescriptionsByPharmacyId(this.currentUser.pharmacyId).pipe(first()).subscribe(prescriptions => {
       this.prescriptions = prescriptions;
+      console.log(this.prescriptions);
     });
   }
 
@@ -53,4 +54,9 @@ export class PharmacistPrescriptionComponent implements OnInit {
       });
   }
 
+  private getFormatedDate(date)  {
+    return new Date(date).toLocaleString();
+  }
+
 }
+

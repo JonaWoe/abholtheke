@@ -6,11 +6,12 @@
       <div class=item-info>
         <p class=info> {{prescription.value.medicine}}, {{prescription.value.amount}} </p>
         <p class=info> {{prescription.value.issuedBy}}</p>
-        <p class=info>Bestellungseingang: {{prescription.value.assignedAt}}</p>
+        <p class=info>Bestellungseingang: {{getFormatedDate(prescription.value.assignedAt)}}</p>
         <p class=info>Versicherungsnummer: {{prescription.value.insuranceId}}</p>
       </div>
       <div class=item-info>
-        <p class=info><button class=button-primary>Bestellung abarbeiten</button></p>
+        <app-box-modal [prescription]="prescription.value"></app-box-modal>
+        <!--p class=info><button class=button-primary></button></p-->
       </div>
     </div>
   </section>

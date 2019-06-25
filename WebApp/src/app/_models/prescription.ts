@@ -12,4 +12,5 @@ export class Prescription {
   description: string;
   imgUrl: string;
   pharmacyId: string;
+  assignedAt: string;
 }

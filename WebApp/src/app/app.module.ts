@@ -19,6 +19,7 @@ import { WithGoogleComponent } from './patient-register/withGoogle';
 import { PharmacistLoginComponent } from './pharmacist-login';
 import { PharmacistHomeComponent } from './pharmacist-home';
 import { PharmacistPrescriptionComponent } from './pharmacist-prescription';
+import { ChooseBoxModal } from './pharmacist-prescription/chooseBox.modal/chooseBox.modal';
 
 
 const googleLoginOptions: LoginOpt = {
@@ -55,7 +56,8 @@ export function provideConfig() {
     WithGoogleComponent,
     PharmacistLoginComponent,
     PharmacistHomeComponent,
-    PharmacistPrescriptionComponent
+    PharmacistPrescriptionComponent,
+    ChooseBoxModal
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

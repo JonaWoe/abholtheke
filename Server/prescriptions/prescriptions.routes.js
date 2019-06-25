@@ -38,7 +38,7 @@ router.get('/pharmacy/:pharmacyId', async function (req, res) {
     const pharmacyId = req.params.pharmacyId;
 
     // continue if token ist valid, role is 1 (user) and same insuranceId
-    console.log(pharmacyId)
+
     if (verifiedToken && verifiedToken.role === 2 && verifiedToken.pharmacyId === pharmacyId ) {
         try {
             const dbo = req.app.locals.dbo;

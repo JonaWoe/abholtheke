@@ -1,0 +1,21 @@
+<ng-template #contentBox let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="box-modal-basic-title">Abholbox auswählen:</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <section class=item-info-wrapper *ngFor="let box of boxes">
+        <div class=container>
+          <div class=item-info>
+            <p class=info>Name: {{box.boxNumber}}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</ng-template>
+
+<button class="button-modal" (click)="open(contentBox)">Bestellung abarbeiten</button>
