@@ -20,6 +20,14 @@ module.exports = {
         return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {pharmacyId: pharmacyId, assignedAt: encryptedDate }});
     },
 
+    updatePrescriptionRedeemed: function (dbo, prescriptionId, redeemed) {
+        return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {redeemed: redeemed}});
+    },
+
+    updatePrescriptionReady: function (dbo, prescriptionId, ready) {
+        return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {ready: ready}});
+    },
+
     decryptPrescriptions(prescriptions) {
         let decryptedPrescriptions = [];
         for (let prescription of prescriptions) {

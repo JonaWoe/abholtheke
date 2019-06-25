@@ -14,8 +14,8 @@ module.exports = {
         return dbo.collection('boxes').findOne({pharmacyId: pharmacyId, boxNumber: boxNumber});
     },
 
-    updateBoxPrescriptionId: function (dbo, _id, prescriptionId,) {
-        return  dbo.collection('boxes').findOneAndUpdate({_id: ObjectId(_id)}, {$set: {prescriptionId: prescriptionId}});
+    updateBoxPrescriptionIdAndStatus: function (dbo, _id, prescriptionId, status) {
+        return  dbo.collection('boxes').findOneAndUpdate({_id: ObjectId(_id)}, {$set: {prescriptionId: prescriptionId, status: status, date: new Date()}});
     },
 
     updateBoxStatus: function (dbo, _id, status) {

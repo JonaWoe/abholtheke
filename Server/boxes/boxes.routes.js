@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('./../authentication/jwt.service');
 const boxesService = require('./boxes.service');
+const prescriptionService = require('../prescriptions/prescriptions.service');
 
 const usernameAndPassword = 'admin:admin';
 
@@ -38,7 +39,7 @@ router.post('/prescription', async (req, res) => {
     const box = await boxesService.getBoxById(dbo, boxId);
     if (verifiedToken && verifiedToken.role === 2 && box && verifiedToken.pharmacyId === box.pharmacyId ) {
         try {
-            boxesService.updateBoxPrescriptionId(dbo, boxId, prescriptionId);
+            boxesService.updateBoxPrescriptionIdAndStatus(dbo, boxId, prescriptionId, 'inProcess');
             res.status(201).json({status: "Updated"});
         } catch(err) {
             res.status(503).json({message: 'Keine DB Verbindung!'});
@@ -64,8 +65,17 @@ router.post('/status', async (req, res) => {
 
         if (box) {
             try {
-                boxesService.updateBoxStatus(dbo, box._id, status);
-                res.status(201).json({status: "Updated"});
+                if (status === 'stored') {
+                    boxesService.updateBoxStatus(dbo, box._id, status);
+                    prescriptionService.updatePrescriptionReady(dbo, box.prescriptionId,true);
+                    res.status(201).json({status: "Updated"});
+                } else if (status === 'pickedUp') {
+                    prescriptionService.updatePrescriptionRedeemed(dbo, box.prescriptionId,true);
+                    boxesService.updateBoxPrescriptionIdAndStatus(dbo,box._id, '', 'empty');
+                    res.status(201).json({status: "Updated"});
+                } else {
+                    res.status(404).json({status: "Status not found"});
+                }
             } catch(err) {
                 res.status(503).json({message: 'Keine DB Verbindung!'});
                 console.log(err);
