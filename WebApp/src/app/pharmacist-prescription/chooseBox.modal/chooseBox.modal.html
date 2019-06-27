@@ -14,7 +14,8 @@
         <div class=container>
           <div class=item-info>
             <p class=info>Name: {{box.boxNumber}}</p>
-            <button class="button" (click)="chooseBox(box)">auswählen</button>
+            <button *ngIf="box.status === 'empty'" class="button" (click)="chooseBox(box)">auswählen</button>
+            <p class=info *ngIf="box.status !== 'empty'">Box belegt</p>
           </div>
         </div>
       </section>

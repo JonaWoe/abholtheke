@@ -61,12 +61,16 @@ router.post('/prescription', async (req, res) => {
 
     const box = await boxesService.getBoxById(dbo, boxId);
     if (verifiedToken && verifiedToken.role === 2 && box && verifiedToken.pharmacyId === box.pharmacyId ) {
-        try {
-            boxesService.updateBoxPrescriptionIdAndStatus(dbo, boxId, prescriptionId, 'inProcess');
-            res.status(201).json({status: "Updated"});
-        } catch(err) {
-            res.status(503).json({message: 'Keine DB Verbindung!'});
-            console.log(err);
+        if (box.status === 'empty') {
+            try {
+                boxesService.updateBoxPrescriptionIdAndStatus(dbo, boxId, prescriptionId, 'inProcess');
+                res.status(201).json({status: "Updated"});
+            } catch(err) {
+                res.status(503).json({message: 'Keine DB Verbindung!'});
+                console.log(err);
+            }
+        } else {
+            res.status(406).json({message: 'Box ist bereits belegt'});
         }
     } else {
         res.status(401).json({message: 'Nutzer nicht authorisiert'});

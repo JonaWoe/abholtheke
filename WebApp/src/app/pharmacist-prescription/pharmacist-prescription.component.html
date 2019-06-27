@@ -1,7 +1,7 @@
 <div class="list-item">
   <h2>Bestellungen</h2>
   <section class=item-info-wrapper *ngFor="let prescription of prescriptions | keyvalue">
-    <div class="container">
+    <div class="container" *ngIf="!prescription.value.redeemed">
       <div class=item-img><img class=item-img [src]="prescription.value.imgUrl" /></div>
       <div class=item-info>
         <p class=info> {{prescription.value.medicine}}, {{prescription.value.amount}} </p>
@@ -10,8 +10,9 @@
         <p class=info>Versicherungsnummer: {{prescription.value.insuranceId}}</p>
       </div>
       <div class=item-info>
-        <!-- TODO status des rezeptes überprüfen, button nur anzeigen wenn noch nicht eingelagert -->
-        <app-box-modal [prescription]="prescription.value"></app-box-modal>
+        <p *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'notAssigned'"><app-box-modal [prescription]="prescription.value"></app-box-modal></p>
+        <p class=info *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'inProcess'">In Bearbeitung</p>
+        <p class=info *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'stored'">Bereit zur Abholung</p>
       </div>
     </div>
   </section>

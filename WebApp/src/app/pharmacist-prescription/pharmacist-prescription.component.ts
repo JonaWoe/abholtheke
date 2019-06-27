@@ -48,5 +48,15 @@ export class PharmacistPrescriptionComponent implements OnInit {
     return new Date(date).toLocaleString();
   }
 
+  private getPrescriptionBoxStatus(prescriptionsId) {
+    let result = 'notAssigned';
+    for (const box of this.boxes) {
+      if (box.prescriptionId === prescriptionsId) {
+        result = box.status;
+        break;
+      }
+    }
+    return result;
+  }
 }
 

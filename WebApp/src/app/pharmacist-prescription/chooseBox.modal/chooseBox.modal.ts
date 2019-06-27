@@ -54,9 +54,6 @@ export class ChooseBoxModal implements OnInit, OnDestroy {
     this.modalService.open(content, { ariaLabelledBy: 'box-modal-basic-title' });
   }
 
-
-  // TODO überprüfung ob box leer (serversetig) anzige fehler falls nicht
-
   private scanSuccessHandler($event) {
     const splitedText = $event.split(':');
     const pharmacyId = splitedText[0];
@@ -68,6 +65,7 @@ export class ChooseBoxModal implements OnInit, OnDestroy {
       .subscribe(data => {
         this.alertService.success('Box '  + boxNumber  + ' ausgewählt!');
         this.modalService.dismissAll();
+        location.reload();
       }, error => {
         this.alertService.error(error);
         this.modalService.dismissAll();
@@ -85,13 +83,11 @@ export class ChooseBoxModal implements OnInit, OnDestroy {
     }
   }
 
-
-  // TODO nur boxen auswählbar machen wenn status == empty
-
   private chooseBox(box) {
     this.boxService.updateBoxPrescriptionId(box._id, this.prescription._id).subscribe(data => {
       this.alertService.success('Box '  + box.boxNumber  + ' ausgewählt!');
       this.modalService.dismissAll();
+      location.reload();
     }, error => {
       this.alertService.error(error);
       this.modalService.dismissAll();
