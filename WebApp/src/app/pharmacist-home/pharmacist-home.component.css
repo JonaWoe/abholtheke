@@ -1,1 +1,31 @@
+.container-row{
+   display:flex;
+   flex-direction:row;
+   flex-wrap: wrap;
+}
+
+.perception-item{
+    margin: 1rem 1rem 1rem 0;
+    width:45%;
+}
+
+
+.row {
+    margin:0;
+    padding:0;
+}
+
+@media (min-width: 576px){
+    .col-sm-3{
+        margin-left:0px !important;
+    }
+    .col-sm-6{
+        margin-left:0px !important;
+
+    }
+
+    .offset-sm-3{
+        margin-left:0px !important;
+    }
+}
 

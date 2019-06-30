@@ -1,3 +1,4 @@
+<div class=content>
 <div class="list-item">
   <h2>Bestellungen</h2>
   <section class=item-info-wrapper *ngFor="let prescription of prescriptions | keyvalue">
@@ -8,12 +9,13 @@
         <p class=info> {{prescription.value.issuedBy}}</p>
         <p class=info>Bestellungseingang: {{getFormatedDate(prescription.value.assignedAt)}}</p>
         <p class=info>Versicherungsnummer: {{prescription.value.insuranceId}}</p>
-      </div>
-      <div class=item-info>
-        <p *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'notAssigned'"><app-box-modal [prescription]="prescription.value"></app-box-modal></p>
-        <p class=info *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'inProcess'">In Bearbeitung</p>
-        <p class=info *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'stored'">Bereit zur Abholung</p>
+        <div class=item-info>
+            <p *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'notAssigned'"><app-box-modal [prescription]="prescription.value"></app-box-modal></p>
+            <p class=info *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'inProcess'">Status: In Bearbeitung</p>
+            <p class=info *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'stored'">Status: Bereit zur Abholung</p>
+          </div>
       </div>
     </div>
   </section>
+</div>
 </div>

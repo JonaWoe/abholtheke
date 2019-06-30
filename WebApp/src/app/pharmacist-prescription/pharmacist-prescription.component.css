@@ -14,19 +14,20 @@ div, section, h2, p{
   display:flex;
   flex-direction:column;
   margin: 2rem 0;
+  width:150%;
 }
 
 .container{
   display:flex;
   flex-direction: row;
-  margin:0;
+  margin: 0 0 1rem 0;
   padding:0;
 
 }
 
 .item-img{
-  width:9rem;
-  height:9rem;
+  width:12rem;
+  height:12rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

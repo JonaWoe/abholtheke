@@ -1,13 +1,13 @@
-<div class="list-item">
+<div class=content>
     <h2>Abholstation Übersicht</h2>
-    <section class=item-info-wrapper *ngFor="let box of boxes | keyvalue">
-      <div class="container">
-        <p class=info>Box Nummer: {{box.value.boxNumber}}</p>
-        <p *ngIf="box.value.status === 'empty'" class=info>Status: leer</p>
-        <p *ngIf="box.value.status === 'inProcess'" class=info>Status: In Bearbeitung</p>
-        <p *ngIf="box.value.status === 'stored'" class=info>Status: Bereit zur Abholung</p>
-        <p *ngIf="getFormatedDate(box.value.date) === 'Invalid Date'" class=info>Letzte Änderung:</p>
-        <p *ngIf="getFormatedDate(box.value.date) !== 'Invalid Date'" class=info>Letzte Änderung: {{getFormatedDate(box.value.date)}}</p>
+      <div class="container-row">
+        <div class=perception-item *ngFor="let box of boxes | keyvalue">
+            <p class=info>Box Nummer: {{box.value.boxNumber}}</p>
+            <p *ngIf="box.value.status === 'empty'" class=info>Status: leer</p>
+            <p *ngIf="box.value.status === 'inProcess'" class=info>Status: In Bearbeitung</p>
+            <p *ngIf="box.value.status === 'stored'" class=info>Status: Bereit zur Abholung</p>
+            <p *ngIf="getFormatedDate(box.value.date) === 'Invalid Date'" class=info>Letzte Änderung:</p>
+            <p *ngIf="getFormatedDate(box.value.date) !== 'Invalid Date'" class=info>Letzte Änderung: {{getFormatedDate(box.value.date)}}</p>
+        </div>
       </div>
-    </section>
   </div>
