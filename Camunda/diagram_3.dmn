@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_01z7bwh" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.1.2">
+  <decision id="Decision_17pygfm" name="Decision 1">
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="datum">
+        <inputExpression id="inputExpression_1" typeRef="boolean">
+          <text>true</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_04ckihz" label="abc">
+        <inputExpression id="LiteralExpression_1lt4vuv" typeRef="boolean">
+          <text>true</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="test" name="test" typeRef="boolean" />
+    </decisionTable>
+  </decision>
+</definitions>

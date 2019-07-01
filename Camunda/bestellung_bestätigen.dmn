@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_1vcwrwz" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.1.2">
+  <decision id="Decision_1cb9wyv" name="Bestellung bestätigen" camunda:versionTag="1">
+    <extensionElements>
+      <biodi:bounds x="485" y="84" width="180" height="80" />
+      <biodi:edge source="InputData_179u5bz">
+        <biodi:waypoints x="448" y="258" />
+        <biodi:waypoints x="556" y="164" />
+      </biodi:edge>
+      <biodi:edge source="InputData_17wxhf9">
+        <biodi:waypoints x="581" y="258" />
+        <biodi:waypoints x="580" y="164" />
+      </biodi:edge>
+      <biodi:edge source="InputData_1aw7mn1">
+        <biodi:waypoints x="734" y="258" />
+        <biodi:waypoints x="641" y="164" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_179u5bz" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_17wxhf9" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_1aw7mn1" />
+    </informationRequirement>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="VIP-Status">
+        <inputExpression id="inputExpression_1" typeRef="boolean" expressionLanguage="FEEL">
+          <text>true</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0e2gbbt" label="Datum">
+        <inputExpression id="LiteralExpression_0cmek29" typeRef="boolean">
+          <text>true</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0ilditf" label="Zahlung_eingegangen">
+        <inputExpression id="LiteralExpression_05am320" typeRef="boolean">
+          <text>true</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0dew6de">
+        <inputExpression id="LiteralExpression_0h5o86l" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_00lkzlw">
+        <inputExpression id="LiteralExpression_0an8wg8" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Bestellung bestätigen" name="bestellung_bestätigen" typeRef="boolean" />
+      <rule id="DecisionRule_1ib2cfg">
+        <inputEntry id="UnaryTests_13105ib">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xzx9og">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04h03ww">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0f2l9u4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1iyz5n3">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lcdtpr">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0bzgaet">
+        <inputEntry id="UnaryTests_025w0tp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06et24p">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0z9mqn8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s66w9u">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16c58bj">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1iuvc0c">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1onzd94">
+        <inputEntry id="UnaryTests_0dd37gk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jg9em2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rrnwb6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jt61h8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pg5j5p">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1t2eoj6">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_058ewb1">
+        <inputEntry id="UnaryTests_06np1rh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dsvtg9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qf1qok">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_136274w">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pddr42">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0okizoq">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01wps95">
+        <description></description>
+        <inputEntry id="UnaryTests_0b8nu13">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0oylzeo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u39m4q">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1w76554">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yflj2d">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0sld6ev">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1sdfh3w">
+        <description></description>
+        <inputEntry id="UnaryTests_0s2edqj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0acm6oj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1t22xhy">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05697sg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1klia13">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_072i0b2">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02wowv6">
+        <inputEntry id="UnaryTests_0vcfapr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rztj21">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vup0ur">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1alv96r">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h8fr6w">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17xz185">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_16f30tr">
+        <inputEntry id="UnaryTests_0nm4h2q">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i1ghgd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r922ir">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19lqvn7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_020x1fn">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xerpq0">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_179u5bz" name="Zahlung eingegangen">
+    <extensionElements>
+      <biodi:bounds x="358" y="258" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_17wxhf9" name="VIP-Status">
+    <extensionElements>
+      <biodi:bounds x="521" y="258" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_1aw7mn1" name="Ausstellungsdatum">
+    <extensionElements>
+      <biodi:bounds x="694" y="258" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+</definitions>
