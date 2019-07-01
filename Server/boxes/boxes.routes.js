@@ -82,7 +82,7 @@ router.post('/status', async (req, res) => {
     const token = req.header('authorization').split(' ')[1];
     const credentials = Buffer.from(token, 'base64').toString('ascii');
 
-    if (credentials === usernameAndPassword) {
+    //if (credentials === usernameAndPassword) {
         const pharmacyId = req.body.pharmacyId;
         const boxNumber = req.body.boxNumber;
         const status = req.body.status;
@@ -101,18 +101,18 @@ router.post('/status', async (req, res) => {
                     boxesService.updateBoxPrescriptionIdAndStatus(dbo,box._id, '', 'empty');
                     res.status(201).json({status: "Updated"});
                 } else {
-                    res.status(404).json({status: "Status not found"});
+                    res.status(404).json({status: "Status not found"  + req.body});
                 }
             } catch(err) {
-                res.status(503).json({message: 'Keine DB Verbindung!'});
+                res.status(503).json({message: 'Keine DB Verbindung!'  + req.body});
                 console.log(err);
             }
         } else {
-            res.status(404).json({message: 'Box wurde nicht gefunden!'});
+            res.status(404).json({message: 'Box wurde nicht gefunden!' + req.body});
         }
-    } else {
-        res.status(401).json({message: 'Nutzer nicht authorisiert'});
-    }
+   // } else {
+   //     res.status(401).json({message: 'Nutzer nicht authorisiert'  + req.body});
+   // }
 });
 
 module.exports = router;

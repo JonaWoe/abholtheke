@@ -21,11 +21,13 @@ module.exports = {
     },
 
     updatePrescriptionRedeemed: function (dbo, prescriptionId, redeemed) {
-        return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {redeemed: redeemed}});
+        const encryptedRedeemed = cryptoService.encrypt(JSON.stringify(redeemed));
+        return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {redeemed: encryptedRedeemed }});
     },
 
     updatePrescriptionReady: function (dbo, prescriptionId, ready) {
-        return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {ready: ready}});
+        const encryptedReady = cryptoService.encrypt(JSON.stringify(ready));
+        return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {ready: encryptedReady}});
     },
 
     decryptPrescriptions(prescriptions) {
