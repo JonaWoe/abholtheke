@@ -82,7 +82,7 @@ router.post('/status', async (req, res) => {
     const token = req.header('authorization').split(' ')[1];
     const credentials = Buffer.from(token, 'base64').toString('ascii');
 
-    //if (credentials === usernameAndPassword) {
+    if (credentials === usernameAndPassword) {
         const pharmacyId = req.body.pharmacyId;
         const boxNumber = req.body.boxNumber;
         const status = req.body.status;
@@ -91,28 +91,32 @@ router.post('/status', async (req, res) => {
         const box = await boxesService.getBoxByPharmacyIdAndNumber(dbo, pharmacyId, boxNumber);
 
         if (box) {
-            try {
-                if (status === 'stored') {
-                    boxesService.updateBoxStatus(dbo, box._id, status);
-                    prescriptionService.updatePrescriptionReady(dbo, box.prescriptionId,true);
-                    res.status(201).json({status: "Updated"});
-                } else if (status === 'pickedUp') {
-                    prescriptionService.updatePrescriptionRedeemed(dbo, box.prescriptionId,true);
-                    boxesService.updateBoxPrescriptionIdAndStatus(dbo,box._id, '', 'empty');
-                    res.status(201).json({status: "Updated"});
-                } else {
-                    res.status(404).json({status: "Status not found"  + req.body});
+            if (box.prescriptionId) {
+                try {
+                    if (status === 'stored') {
+                        boxesService.updateBoxStatus(dbo, box._id, status);
+                        prescriptionService.updatePrescriptionReady(dbo, box.prescriptionId, true);
+                        res.status(201).json({status: "Updated"});
+                    } else if (status === 'pickedUp') {
+                        prescriptionService.updatePrescriptionRedeemed(dbo, box.prescriptionId, true);
+                        boxesService.updateBoxPrescriptionIdAndStatus(dbo,box._id, '', 'empty');
+                        res.status(201).json({status: "Updated"});
+                    } else {
+                        res.status(404).json({status: "Status not found"});
+                    }
+                } catch(err) {
+                    res.status(503).json({message: 'Keine DB Verbindung!'});
+                    console.log(err);
                 }
-            } catch(err) {
-                res.status(503).json({message: 'Keine DB Verbindung!'  + req.body});
-                console.log(err);
+            } else {
+                res.status(400).json({message: 'Kein Rezept zugeordnet!'});
             }
         } else {
-            res.status(404).json({message: 'Box wurde nicht gefunden!' + req.body});
+            res.status(404).json({message: 'Box wurde nicht gefunden!'});
         }
-   // } else {
-   //     res.status(401).json({message: 'Nutzer nicht authorisiert'  + req.body});
-   // }
+    } else {
+       res.status(401).json({message: 'Nutzer nicht authorisiert'  + req.body});
+    }
 });
 
 module.exports = router;
