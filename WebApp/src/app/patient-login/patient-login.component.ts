@@ -44,7 +44,7 @@ export class PatientLoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/patient';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/patient/prescriptions';
   }
 
   // convenience getter for easy access to form fields
@@ -77,7 +77,7 @@ export class PatientLoginComponent implements OnInit {
         .pipe(first())
         .subscribe(
           data => {
-            this.router.navigate(['/patient']);
+            this.router.navigate(['/patient/prescriptions']);
           },
           error => {
             this.alertService.error(error);

@@ -1,7 +1,6 @@
 <!-- nav -->
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser && currentUser.role == 1">
   <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/patient">Home</a>
     <a class="nav-item nav-link" routerLink="/patient/prescriptions">Meine Rezepte</a>
     <a class="nav-item nav-link" (click)="logoutPatient()">Logout</a>
   </div>
