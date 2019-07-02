@@ -28,7 +28,7 @@ export class PatientLoginComponent implements OnInit {
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/patient']);
+      this.router.navigate(['/patient/prescriptions']);
     }
   }
 
@@ -82,7 +82,7 @@ export class PatientLoginComponent implements OnInit {
           error => {
             this.alertService.error(error);
             this.loading = false;
-            this.router.navigate([this.returnUrl + '/register/google']);
+            this.router.navigate(['/patient/register/google']);
           });
   });
   }

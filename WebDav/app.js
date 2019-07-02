@@ -5,6 +5,7 @@ const MongoClient = require('mongodb').MongoClient;
 const webdav = require('webdav-server').v2;
 const service = require('./service');
 const webdavOwn = require('./WebDav');
+const cryptoService = require('./WebDav/Crypto');
 
 // CalDav
 const ics = require('ics');
@@ -66,7 +67,8 @@ async function startWebDav(dbo) {
             // add prescriptions from the user to the file structure
             let events = [];
             const prescriptions = await service.getPrescriptionsByInsuranceId(dbo, user.insuranceId);
-            for (const prescription of prescriptions) {
+            const decryptedPrescriptions = decryptPrescriptions(prescriptions);
+            for (const prescription of decryptedPrescriptions) {
                 fileStructure[user.insuranceId]['prescriptions'][prescription._id + '.json'] = JSON.stringify(prescription);
 
                 // generate iCall events
@@ -120,4 +122,29 @@ async function startWebDav(dbo) {
     server.start(httpServer => {
         console.log('Server started with success on the port : ' + httpServer.address().port);
     });
+}
+
+function decryptPrescriptions(prescriptions) {
+    let decryptedPrescriptions = [];
+    for (let prescription of prescriptions) {
+        const decryptedPrescription = {
+            _id: prescription._id,
+            insuranceId: prescription.insuranceId,
+            pharmacyId: prescription.pharmacyId,
+            issuedBy: cryptoService.decrypt(prescription.issuedBy),
+            expireDate: cryptoService.decrypt(prescription.expireDate),
+            medicine: cryptoService.decrypt(prescription.medicine),
+            amount: cryptoService.decrypt(prescription.amount),
+            medicineId: cryptoService.decrypt(prescription.medicineId),
+            redeemed: JSON.parse(cryptoService.decrypt(prescription.redeemed)),
+            ready: JSON.parse(cryptoService.decrypt(prescription.ready)),
+            time: JSON.parse(cryptoService.decrypt(prescription.time)),
+            duration: cryptoService.decrypt(prescription.duration),
+            description: cryptoService.decrypt(prescription.description),
+            imgUrl: cryptoService.decrypt(prescription.imgUrl),
+            assignedAt:JSON.parse(cryptoService.decrypt(prescription.assignedAt))
+        };
+        decryptedPrescriptions.push(decryptedPrescription);
+    }
+    return decryptedPrescriptions;
 }
