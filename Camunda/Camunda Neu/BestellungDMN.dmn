@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_06m07wv" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.1.2">
-  <decision id="bestellung-dmn" name="Bestellungsbestaetigung">
-    <decisionTable id="decisionTable_1">
-      <input id="input_1" label="Ja/nein">
-        <inputExpression id="inputExpression_1" typeRef="boolean" expressionLanguage="FEEL">
-          <text></text>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_06m07wv" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.1.2">
+  <decision id="bestellungPruefen" name="BestellungPruefen">
+    <extensionElements>
+      <biodi:bounds x="150" y="150" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable_1" hitPolicy="FIRST">
+      <input id="InputClause_1h743sh" label="VIP">
+        <inputExpression id="LiteralExpression_1075po9" typeRef="boolean">
+          <text>vip</text>
         </inputExpression>
       </input>
-      <output id="output_1" label="Ergebnis" typeRef="boolean" />
+      <input id="InputClause_0bno9tv" label="Zahlungseingang">
+        <inputExpression id="LiteralExpression_084uwmt" typeRef="boolean">
+          <text>zahlungseingang</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Ergebnis" name="ergebnis" typeRef="string" />
       <rule id="DecisionRule_0wywv8b">
-        <inputEntry id="UnaryTests_0fmzq2x">
+        <inputEntry id="UnaryTests_0oo11t2">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jglk68">
           <text>true</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_11wrxb2">
@@ -17,19 +28,25 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_121mi89">
-        <inputEntry id="UnaryTests_1i6757o">
+        <inputEntry id="UnaryTests_0mu295j">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0f2y28d">
           <text>false</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0icccgo">
-          <text>false</text>
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0jkgr9b">
-        <inputEntry id="UnaryTests_0k8gcm3">
-          <text></text>
+        <inputEntry id="UnaryTests_0e452iq">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06ix05s">
+          <text>false</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0vmytyw">
-          <text></text>
+          <text>false</text>
         </outputEntry>
       </rule>
     </decisionTable>
