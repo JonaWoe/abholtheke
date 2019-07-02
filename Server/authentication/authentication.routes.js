@@ -79,7 +79,7 @@ router.post('/google', async (req, res) => {
 
             res.status(201).json(body);
         } else {
-            res.status(400).json({message: ' Registrierung erforderlich!'});
+            res.status(400).json({message: 'Registrierung erforderlich!'});
         }
     } catch(err) {
         res.status(503).json({message: 'Keine DB Verbindung!'});
