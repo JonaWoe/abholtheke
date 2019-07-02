@@ -25,7 +25,7 @@ export class WithGoogleComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      insuranceId: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10) ]], //todo change min lenght
+      insuranceId: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10) ]],
     });
 
     this.authService.authState.subscribe((user) => {

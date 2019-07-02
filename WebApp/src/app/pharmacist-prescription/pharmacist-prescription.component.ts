@@ -58,5 +58,16 @@ export class PharmacistPrescriptionComponent implements OnInit {
     }
     return result;
   }
+
+  private newPrescriptionsAvailable() {
+    let available = true;
+    for (const prescription of this.prescriptions) {
+      if (!prescription.redeemed) {
+        available = false;
+        break;
+      }
+    }
+    return available;
+  }
 }
 

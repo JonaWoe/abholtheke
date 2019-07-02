@@ -34,7 +34,7 @@
     <input id="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
       <div *ngIf="f.password.errors.required">Passwort benötigt</div>
-      <div *ngIf="f.password.errors.minlength">Passwort muss min. 6 Zeichen lang sein</div>
+      <div *ngIf="f.password.errors.minlength">Passwort muss min. 8 Zeichen lang sein</div>
     </div>
   </div>
   <div class="form-group">

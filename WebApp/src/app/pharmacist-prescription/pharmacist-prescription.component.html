@@ -1,21 +1,26 @@
 <div class=content>
 <div class="list-item">
-  <h2>Bestellungen</h2>
-  <section class=item-info-wrapper *ngFor="let prescription of prescriptions | keyvalue">
-    <div class="container" *ngIf="!prescription.value.redeemed">
-      <div class=item-img><img class=item-img [src]="prescription.value.imgUrl" /></div>
-      <div class=item-info>
-        <p class=info> {{prescription.value.medicine}}, {{prescription.value.amount}} </p>
-        <p class=info> {{prescription.value.issuedBy}}</p>
-        <p class=info>Bestellungseingang: {{getFormatedDate(prescription.value.assignedAt)}}</p>
-        <p class=info>Versicherungsnummer: {{prescription.value.insuranceId}}</p>
+  <h2>Bestellungen:</h2>
+  <div *ngIf="!newPrescriptionsAvailable()">
+    <section class=item-info-wrapper *ngFor="let prescription of prescriptions | keyvalue">
+      <div class="container" *ngIf="!prescription.value.redeemed">
+        <div class=item-img><img class=item-img [src]="prescription.value.imgUrl" /></div>
         <div class=item-info>
-            <p *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'notAssigned'"><app-box-modal [prescription]="prescription.value"></app-box-modal></p>
-            <p class=info *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'inProcess'">Status: In Bearbeitung</p>
-            <p class=info *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'stored'">Status: Bereit zur Abholung</p>
-          </div>
+          <p class=info> {{prescription.value.medicine}}, {{prescription.value.amount}} </p>
+          <p class=info> {{prescription.value.issuedBy}}</p>
+          <p class=info>Bestellungseingang: {{getFormatedDate(prescription.value.assignedAt)}}</p>
+          <p class=info>Versicherungsnummer: {{prescription.value.insuranceId}}</p>
+          <div class=item-info>
+              <p *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'notAssigned'"><app-box-modal [prescription]="prescription.value"></app-box-modal></p>
+              <p class=info *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'inProcess'">Status: In Bearbeitung</p>
+              <p class=info *ngIf="getPrescriptionBoxStatus(prescription.value._id) === 'stored'">Status: Bereit zur Abholung</p>
+            </div>
+        </div>
       </div>
-    </div>
+    </section>
+  </div>
+  <section class=item-info-wrapper *ngIf="newPrescriptionsAvailable()">
+    Keine neue Bestellung vorhanden.
   </section>
 </div>
 </div>

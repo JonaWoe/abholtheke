@@ -26,11 +26,11 @@ export class PatientRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      insuranceId: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10) ]], //todo change min lenght
+      insuranceId: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10) ]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       eMail: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(1)]] //todo change min lenght
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 

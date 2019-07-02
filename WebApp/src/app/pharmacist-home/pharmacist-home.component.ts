@@ -32,7 +32,11 @@ export class PharmacistHomeComponent implements OnInit {
   }
 
   private getFormatedDate(date)  {
-    return new Date(date).toLocaleString();
+    let formatedDate = new Date(date).toLocaleString();
+    if (formatedDate === 'Invalid Date') {
+      formatedDate = ' ';
+    }
+    return formatedDate;
   }
 
 }

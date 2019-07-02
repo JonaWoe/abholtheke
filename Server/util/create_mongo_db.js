@@ -73,18 +73,19 @@ MongoClient.connect(url,{ useNewUrlParser: true },function(err,db){
     ];
 
     const boxes = [
-        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '1', prescriptionId:'', status: 'empty', date:'' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '2', prescriptionId:'', status: 'empty', date:'' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '3', prescriptionId:'', status: 'empty', date:'' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '1', prescriptionId:'', status: 'empty', date:'' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '2', prescriptionId:'', status: 'empty', date:'' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '3', prescriptionId:'', status: 'empty', date:'' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '1', prescriptionId:'', status: 'empty', date:'' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '2', prescriptionId:'', status: 'empty', date:'' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '3', prescriptionId:'', status: 'empty', date:'' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '1', prescriptionId:'', status: 'empty', date:'' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '2', prescriptionId:'', status: 'empty', date:'' },
-        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '3', prescriptionId:'', status: 'empty', date:'' }
+        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '1', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '2', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '3', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c0', boxNumber: '4', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '1', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '2', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c1', boxNumber: '3', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '1', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '2', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c2', boxNumber: '3', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '1', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '2', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' },
+        { pharmacyId: '5d0defbcc340ba37a80f73c3', boxNumber: '3', prescriptionId:'', status: 'empty', date:'2019-07-01T00:00:00.000+00:00' }
     ];
 
 

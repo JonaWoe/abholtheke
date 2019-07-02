@@ -3,11 +3,19 @@
       <div class="container-row">
         <div class=perception-item *ngFor="let box of boxes | keyvalue">
             <p class=info>Box Nummer: {{box.value.boxNumber}}</p>
-            <p *ngIf="box.value.status === 'empty'" class=info>Status: leer<img src="../../assets/box_empty.svg" class=imgprop/></p>
-            <p *ngIf="box.value.status === 'inProcess'" class=info>Status: In Bearbeitung<img src="../../assets/box_inProgress.svg" class=imgprop/></p>
-            <p *ngIf="box.value.status === 'stored'" class=info>Status: Bereit zur Abholung<img src="../../assets/box_finished.svg" class=imgprop/></p>
-            <p *ngIf="getFormatedDate(box.value.date) === 'Invalid Date'" class=info>Letzte Änderung:</p>
-            <p *ngIf="getFormatedDate(box.value.date) !== 'Invalid Date'" class=info>Letzte Änderung: {{getFormatedDate(box.value.date)}}</p>
+            <p class=info>Letzte Änderung: {{getFormatedDate(box.value.date)}}</p>
+            <div *ngIf="box.value.status === 'empty'">
+              <p class=info>Status:</p>
+              <img src="../../assets/box_empty.svg" class=imgprop/>
+            </div>
+            <div *ngIf="box.value.status === 'inProcess'">
+              <p class=info>Status:</p>
+              <img src="../../assets/box_inProgress.svg" class=imgprop/>
+            </div>
+            <div *ngIf="box.value.status === 'stored'">
+              <p class=info>Status:</p>
+              <img src="../../assets/box_finished.svg" class=imgprop/>
+            </div>
         </div>
       </div>
   </div>
