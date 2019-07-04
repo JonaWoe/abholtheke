@@ -8,7 +8,7 @@
 </section>
 
 
-<section class=item-info-wrapper *ngIf="doorStatus === 'closed'">
+<section class=item-info-wrapper>
   Ihre Medizin ist in Box {{box.boxNumber}}.
 </section>
 <section class=item-info-wrapper *ngIf="doorStatus === 'closed'">
@@ -16,6 +16,7 @@
 </section>
 <section class=item-info-wrapper *ngIf="doorStatus === 'open'">
   Tür Status Box {{box.boxNumber}}: geöffnet.
+  Entnehmen sie die Medizin
 </section>
 
 

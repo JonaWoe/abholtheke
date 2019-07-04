@@ -26,9 +26,7 @@ export class TerminalComponent implements OnInit {
   ngOnInit() {
     this.authenticationService.logout();
     this.detectWebcam();
-    this.startProcess('5d1e1919b5430e07c826b9b1');
   }
-
 
   private scanSuccessHandler($event) {
     this.startProcess($event);
