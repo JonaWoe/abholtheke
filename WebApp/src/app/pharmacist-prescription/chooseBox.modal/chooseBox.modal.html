@@ -2,7 +2,7 @@
   <div class="modal-header">
     <h4 class="modal-title" id="box-modal-basic-title">
       <span *ngIf="!cameraAvailable">Abholbox auswählen:</span>
-      <span *ngIf="cameraAvailable">Abholbox einscanen:</span>
+      <span *ngIf="cameraAvailable">Abholbox einscannen:</span>
     </h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
@@ -25,4 +25,4 @@
     </div>
   </div>
 </ng-template>
-<button class="button-modal" (click)="open(contentBox)">Bestellung abarbeiten</button>
+<button class="button-modal" (click)="open(contentBox)">Bestellung bearbeiten</button>
