@@ -13,6 +13,8 @@
 /WebDav/node_modules
 /WebApp/node_modules
 /WebApp/.firebase
+/Camunda/CamundaCloud
+/Camunda/RESTConnectorTest
 .firebase
 
 # profiling files
