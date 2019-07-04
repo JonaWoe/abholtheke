@@ -1,0 +1,9 @@
+div, section, h2, p{
+  margin:0;
+  padding:0;
+}
+.item-info-wrapper{
+  display:flex;
+  flex-direction:column;
+  margin: 2rem 0;
+}

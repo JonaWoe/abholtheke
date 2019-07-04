@@ -6,6 +6,10 @@ module.exports = {
         return dbo.collection('boxes').findOne(ObjectId(_id));
     },
 
+    getBoxByPrescriptionId : function (dbo, prescriptionId) {
+        return dbo.collection('boxes').findOne({prescriptionId: prescriptionId});
+    },
+
     getBoxesByPharmacyId: function(dbo, pharmacyId) {
        return dbo.collection('boxes').find({pharmacyId: pharmacyId}).toArray();
     },
@@ -20,5 +24,9 @@ module.exports = {
 
     updateBoxStatus: function (dbo, _id, status) {
         return  dbo.collection('boxes').findOneAndUpdate({_id: ObjectId(_id)}, {$set: {status:status, date: new Date()}});
+    },
+
+    updateBoxDoorStatus: function (dbo, _id, doorStatus) {
+        return  dbo.collection('boxes').findOneAndUpdate({_id: ObjectId(_id)}, {$set: {doorStatus: doorStatus}});
     }
 };

@@ -6,6 +6,12 @@ const prescriptionService = require('../prescriptions/prescriptions.service');
 
 const usernameAndPassword = 'admin:admin';
 
+router.get('/', async function (req, res) {
+    console.log('worked');
+    res.status(200).json({boxStatus: 'open'});
+});
+
+
 router.get('/:pharmacyId', async function (req, res) {
 
     const accessToken = req.header('authorization').split(' ')[1];
@@ -100,6 +106,7 @@ router.post('/status', async (req, res) => {
                     } else if (status === 'pickedUp') {
                         prescriptionService.updatePrescriptionRedeemed(dbo, box.prescriptionId, true);
                         boxesService.updateBoxPrescriptionIdAndStatus(dbo,box._id, '', 'empty');
+                        // TODO complete task in camunda
                         res.status(201).json({status: "Updated"});
                     } else {
                         res.status(404).json({status: "Status not found"});

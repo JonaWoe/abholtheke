@@ -10,6 +10,7 @@ import { PharmacistLoginComponent } from './pharmacist-login';
 import { PharmacistHomeComponent } from './pharmacist-home';
 import { PharmacistAuthGuard } from './_guards';
 import { PharmacistPrescriptionComponent } from './pharmacist-prescription';
+import { TerminalComponent } from './terminal/terminal.component';
 
 const appRoutes: Routes = [
   { path: 'patient', component: PatientHomeComponent, canActivate: [PatientAuthGuard] },
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   { path: 'pharmacist', component: PharmacistHomeComponent, canActivate: [PharmacistAuthGuard] },
   { path: 'pharmacist/login', component: PharmacistLoginComponent },
   { path: 'pharmacist/prescriptions', component: PharmacistPrescriptionComponent, canActivate: [PharmacistAuthGuard]  },
+  { path: 'terminal', component: TerminalComponent },
 
 
   // otherwise redirect to patientLogin

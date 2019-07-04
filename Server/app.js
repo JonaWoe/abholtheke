@@ -7,6 +7,7 @@ const authenticationRoutes = require('./authentication/authentication.routes');
 const prescriptionRoutes = require('./prescriptions/prescriptions.routes');
 const pharmaciesRoutes = require('./pharmacies/pharmacies.routes');
 const boxesRoutes = require('./boxes/boxes.routes');
+const terminalsRoutes = require('./terminals/terminals.routes');
 
 // Config
 const config = require('./config/config.js');
@@ -41,3 +42,4 @@ app.use('/authenticate', authenticationRoutes);
 app.use('/prescription', prescriptionRoutes);
 app.use('/pharmacies', pharmaciesRoutes);
 app.use('/boxes', boxesRoutes);
+app.use('/terminals', terminalsRoutes);

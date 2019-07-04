@@ -6,4 +6,5 @@ export class Box {
   prescriptionId: string;
   status: string;
   date: string;
+  doorStatus: string;
 }

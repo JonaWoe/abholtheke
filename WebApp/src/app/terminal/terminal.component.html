@@ -1,0 +1,21 @@
+<h2>Abholstation Terminal</h2>
+<div *ngIf="cameraAvailable && !doorStatus" class="form-group">
+  <zxing-scanner (scanSuccess)="scanSuccessHandler($event)" ></zxing-scanner>
+</div>
+
+<section class=item-info-wrapper *ngIf="!cameraAvailable && !doorStatus">
+  Keine Kamera gefunden.
+</section>
+
+
+<section class=item-info-wrapper *ngIf="doorStatus === 'closed'">
+  Ihre Medizin ist in Box {{box.boxNumber}}.
+</section>
+<section class=item-info-wrapper *ngIf="doorStatus === 'closed'">
+ Tür Status Box {{box.boxNumber}}: verschlossen.
+</section>
+<section class=item-info-wrapper *ngIf="doorStatus === 'open'">
+  Tür Status Box {{box.boxNumber}}: geöffnet.
+</section>
+
+
