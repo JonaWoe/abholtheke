@@ -29,8 +29,6 @@ router.post('/startProcess/:prescriptionId', async function (req, res) {
 
     const box = await boxesService.getBoxByPrescriptionId(dbo, prescriptionId);
 
-    console.log(prescriptionId)
-
     if (box) {
         // TODO
         // get infos to Prescription
