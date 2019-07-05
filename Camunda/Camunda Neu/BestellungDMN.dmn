@@ -15,7 +15,12 @@
           <text>zahlungseingang</text>
         </inputExpression>
       </input>
-      <output id="output_1" label="Ergebnis" name="ergebnis" typeRef="string" />
+      <input id="InputClause_1u8qgcd" label="Valides Datum">
+        <inputExpression id="LiteralExpression_0n9pex5" typeRef="boolean">
+          <text>validesDatum</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Ergebnis" name="ergebnis" typeRef="boolean" />
       <rule id="DecisionRule_0wywv8b">
         <inputEntry id="UnaryTests_0oo11t2">
           <text>true</text>
@@ -23,8 +28,11 @@
         <inputEntry id="UnaryTests_1jglk68">
           <text>true</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_1e2hvta">
+          <text>false</text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_11wrxb2">
-          <text>true</text>
+          <text>false</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_121mi89">
@@ -32,7 +40,10 @@
           <text>true</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0f2y28d">
-          <text>false</text>
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l64wmg">
+          <text>true</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0icccgo">
           <text>true</text>
@@ -40,12 +51,85 @@
       </rule>
       <rule id="DecisionRule_0jkgr9b">
         <inputEntry id="UnaryTests_0e452iq">
-          <text>false</text>
+          <text>true</text>
         </inputEntry>
         <inputEntry id="UnaryTests_06ix05s">
           <text>false</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_1g5rx3o">
+          <text>false</text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_0vmytyw">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0iozc1v">
+        <inputEntry id="UnaryTests_01s6fd6">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nf31hv">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wb9cgn">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_004y851">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0gh8gir">
+        <inputEntry id="UnaryTests_0ecs4qf">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0w5hu5y">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qtem7i">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_066guld">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0hedew7">
+        <inputEntry id="UnaryTests_06r7eh2">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_160y40q">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1u1evnd">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0mcq1rl">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0lboxdw">
+        <inputEntry id="UnaryTests_1siajyh">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0de9c4m">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14gckaa">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04apv3f">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1x5l7ia">
+        <inputEntry id="UnaryTests_0v737u4">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04d30al">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jl3hkc">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1pfz6e0">
           <text>false</text>
         </outputEntry>
       </rule>
