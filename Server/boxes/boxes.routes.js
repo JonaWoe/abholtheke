@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require('./../authentication/jwt.service');
 const boxesService = require('./boxes.service');
 const prescriptionService = require('../prescriptions/prescriptions.service');
+const request = require('request');
 
 const usernameAndPassword = 'admin:admin';
 
@@ -106,7 +107,23 @@ router.post('/status', async (req, res) => {
                     } else if (status === 'pickedUp') {
                         prescriptionService.updatePrescriptionRedeemed(dbo, box.prescriptionId, true);
                         boxesService.updateBoxPrescriptionIdAndStatus(dbo,box._id, '', 'empty');
-                        // TODO complete task in camunda
+
+                        const prescription = await prescriptionService.getPrescriptionById(dbo, box.prescriptionId);
+
+                        const endpointUrl = 'http://localhost:8080';
+                        const body = {
+                            processInstanceId: prescription.processId,
+                            messageName: "Message_medizinEntnehmen"
+                        };
+                        try {
+                            request.post({headers: {'content-type' : 'application/json'}, url: endpointUrl + '/engine-rest/message', body: JSON.stringify(body)}, async function (error, response, body) {
+                                if (error || response.statusCode !== 204) {
+                                    console.log(response.statusCode)
+                                }
+                            });
+                        } catch (error) {
+                            console.log(error);
+                        }
                         res.status(201).json({status: "Updated"});
                     } else {
                         res.status(404).json({status: "Status not found"});

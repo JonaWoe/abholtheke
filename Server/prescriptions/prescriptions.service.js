@@ -20,6 +20,10 @@ module.exports = {
         return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {pharmacyId: pharmacyId, assignedAt: encryptedDate }});
     },
 
+    updatePrescriptionProcessId: function (dbo, prescriptionId, processId) {
+        return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {processId: processId }});
+    },
+
     updatePrescriptionRedeemed: function (dbo, prescriptionId, redeemed) {
         const encryptedRedeemed = cryptoService.encrypt(JSON.stringify(redeemed));
         return  dbo.collection('prescriptions').findOneAndUpdate({_id: ObjectId(prescriptionId)}, {$set: {redeemed: encryptedRedeemed }});
@@ -35,6 +39,7 @@ module.exports = {
         for (let prescription of prescriptions) {
             const decryptedPrescription = {
                 _id: prescription._id,
+                processId: prescription.processId,
                 insuranceId: prescription.insuranceId,
                 pharmacyId: prescription.pharmacyId,
                 issuedBy: cryptoService.decrypt(prescription.issuedBy),

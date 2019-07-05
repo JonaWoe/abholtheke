@@ -13,4 +13,5 @@ export class Prescription {
   imgUrl: string;
   pharmacyId: string;
   assignedAt: string;
+  processId: string;
 }

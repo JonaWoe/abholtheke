@@ -129,6 +129,7 @@ function decryptPrescriptions(prescriptions) {
     for (let prescription of prescriptions) {
         const decryptedPrescription = {
             _id: prescription._id,
+            processId: prescription.processId,
             insuranceId: prescription.insuranceId,
             pharmacyId: prescription.pharmacyId,
             issuedBy: cryptoService.decrypt(prescription.issuedBy),

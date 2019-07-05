@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const boxesService = require('../boxes/boxes.service');
+const request = require('request');
 const prescriptionService = require('../prescriptions/prescriptions.service');
 
 
@@ -29,11 +30,38 @@ router.post('/startProcess/:prescriptionId', async function (req, res) {
 
     const box = await boxesService.getBoxByPrescriptionId(dbo, prescriptionId);
 
+    const endpointUrl = 'http://localhost:8080';
+
+    const body = {
+        variables : {
+            vip : { value : true},
+            zahlungseingang : { value : false},
+            validesDatum : { value : true},
+            urlOpen: {value: 'https://abholtheke-1.appspot.com/terminals/openBox/' + box.pharmacyId + '/' + box.boxNumber, type: 'string'},
+            urlClose: {value: 'https://abholtheke-1.appspot.com/terminals/closeBox/' + box.pharmacyId + '/' + box.boxNumber, type: 'string'}
+
+        }
+    };
+
     if (box) {
-        // TODO
-        // get infos to Prescription
-        // start Process
-        res.status(200).json();
+        request.post({headers: {'content-type' : 'application/json'}, url: endpointUrl + '/engine-rest/process-definition/key/ProzessMedizinAbholen/start', body: JSON.stringify(body)}, async function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                const parsedBody = JSON.parse(body);
+
+                try {
+                    await prescriptionService.updatePrescriptionProcessId(dbo, prescriptionId, parsedBody.id);
+                    res.status(200).json();
+                } catch (err) {
+                    res.status(503).json({message: 'Keine DB Verbindung!'});
+                    console.log(err);
+                }
+
+            } else {
+                console.log(response.statusCode);
+                console.log(error);
+                res.status(400).json({message: 'Rezept nicht gefunden'});
+            }
+        });
     } else {
         res.status(400).json({message: 'Rezept nicht gefunden'});
     }
@@ -74,7 +102,7 @@ router.post('/closeBox/:pharmacyId/:boxNumber', async function (req, res) {
 
     if (box) {
         try {
-            boxesService.updateBoxDoorStatus(dbo, box._id, 'close');
+            boxesService.updateBoxDoorStatus(dbo, box._id, 'closed');
             res.status(201).json({status: "Status Updated"});
         } catch(err) {
             res.status(503).json({message: 'Keine DB Verbindung!'});
@@ -84,6 +112,11 @@ router.post('/closeBox/:pharmacyId/:boxNumber', async function (req, res) {
         res.status(400).json({message: 'Box nicht gefunden'});
     }
 
+});
+
+router.post('/status', async function (req, res) {
+    console.log('Message received from Camunda');
+    res.status(200).json({status: "OK"});
 });
 
 module.exports = router;
