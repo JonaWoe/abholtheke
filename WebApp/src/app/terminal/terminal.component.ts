@@ -14,6 +14,7 @@ export class TerminalComponent implements OnInit {
   cameraAvailable = true;
   doorStatus = '';
   box: Box;
+  loading = false;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -29,7 +30,10 @@ export class TerminalComponent implements OnInit {
   }
 
   private scanSuccessHandler($event) {
-    this.startProcess($event);
+    if (!this.loading) {
+      this.loading = true;
+      this.startProcess($event);
+    }
   }
 
   private detectWebcam() {
@@ -54,12 +58,15 @@ export class TerminalComponent implements OnInit {
   }
 
   private getBoxesByPrescriptionId(prescriptionId): any {
-    this.terminalService.getBoxesByPrescriptionId(prescriptionId).subscribe(box => {
+    this.terminalService.getBoxByPrescriptionId(prescriptionId).subscribe(box => {
       this.box = box;
       this.doorStatus = box.doorStatus;
       this.alertService.success('Rezept eingescanned!');
+      this.loading = false;
     }, error => {
+      this.doorStatus = '';
       this.alertService.error(error);
+      this.loading = false;
     });
   }
 

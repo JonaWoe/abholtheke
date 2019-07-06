@@ -17,7 +17,7 @@ export class TerminalService {
     return this.http.post(environment.endpointUrl + '/terminals/startProcess/' + prescriptionId, this.httpOptions);
   }
 
-  getBoxesByPrescriptionId(prescriptionId) {
+  getBoxByPrescriptionId(prescriptionId) {
     return this.http.get<Box>(environment.endpointUrl + '/terminals/' + prescriptionId, this.httpOptions);
   }
 
