@@ -30,7 +30,7 @@ router.post('/startProcess/:prescriptionId', async function (req, res) {
 
     const box = await boxesService.getBoxByPrescriptionId(dbo, prescriptionId);
 
-    const endpointUrl = 'https://camunda-demo-brsk4km66q-uc.a.run.app';
+    const endpointUrl = 'https://camunda-brsk4km66q-uc.a.run.app';
 
     const body = {
         variables : {

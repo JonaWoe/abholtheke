@@ -110,7 +110,7 @@ router.post('/status', async (req, res) => {
 
                         const prescription = await prescriptionService.getPrescriptionById(dbo, box.prescriptionId);
 
-                        const endpointUrl = 'https://camunda-demo-brsk4km66q-uc.a.run.app';
+                        const endpointUrl = 'https://camunda-brsk4km66q-uc.a.run.app';
                         const body = {
                             processInstanceId: prescription.processId,
                             messageName: "Message_medizinEntnehmen"
